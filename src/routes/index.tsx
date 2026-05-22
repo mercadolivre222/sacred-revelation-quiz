@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
+import salomonCoin from "../assets/salomon_coin.png";
 
 export const Route = createFileRoute("/")({
   component: QuizPage,
@@ -245,9 +246,9 @@ function QuizPage() {
 function Crest() {
   return (
     <img
-      src="coin.jpg"
+      src={salomonCoin}
       alt="Brasão de Salomão"
-      className="w-24 h-24 object-contain rounded-full"
+      className="mx-auto w-24 h-24 mb-6 object-contain rounded-full"
       style={{ filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.6))" }}
     />
   );
