@@ -5,7 +5,7 @@ export const Route = createFileRoute("/")({
   component: QuizPage,
   head: () => ({
     meta: [
-      { title: "Avaliação Sagrada de Perfil" },
+      { title: "A Sondagem da Esfera de Escassez" },
       { name: "description", content: "Descubra seu perfil espiritual e financeiro." },
     ],
     links: [
