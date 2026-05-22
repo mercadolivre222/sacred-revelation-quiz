@@ -148,23 +148,23 @@ function QuizPage() {
           <Crest />
           <h1
             className="mt-4 text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide"
-            style={{ fontFamily: "'Cormorant Garamond', serif", color: "#FF4500", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}
+            style={{ fontFamily: "'Cormorant Garamond', serif", color: "#B8860B", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}
           >
-            AVALIAÇÃO SAGRADA DE PERFIL
+            A SONDAGEM DA ESFERA DE ESCASSEZ
           </h1>
-          <div className="mt-3 h-[2px] w-32 bg-gradient-to-r from-transparent via-[#FF4500] to-transparent" />
+          <div className="mt-3 h-[2px] w-32 bg-gradient-to-r from-transparent via-[#B8860B] to-transparent" />
         </div>
 
         {/* Progress */}
         <div className="mb-8">
           <p
             className="text-center text-sm sm:text-base mb-2 tracking-wide font-medium"
-            style={{ fontFamily: "'EB Garamond', serif", color: "#FFF" }}
+            style={{ fontFamily: "'EB Garamond', serif", color: "#F5F5DC" }}
           >
             {stage.label}{" "}
-            <span style={{ color: "#FF4500" }}>(Nível: {stage.pct}%)</span>
+            <span style={{ color: "#DAA520" }}>(Nível: {stage.pct}%)</span>
           </p>
-          <div className="h-3 w-full rounded-full bg-black/60 border border-[#FF4500]/40 overflow-hidden">
+          <div className="h-3 w-full rounded-full bg-black/60 border border-[#B8860B]/40 overflow-hidden">
             <div
               className="h-full sacred-bar transition-all duration-700 ease-out"
               style={{ width: `${stage.pct}%` }}
@@ -181,8 +181,8 @@ function QuizPage() {
               className="text-center text-xl sm:text-2xl fade-in tracking-wide animate-pulse"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                color: loadingStep === 1 ? "#FF3333" : loadingStep === 2 ? "#FF4500" : "#F5F5DC",
-                textShadow: "0 0 15px rgba(255, 69, 0, 0.7)",
+                color: loadingStep === 1 ? "#DAA520" : loadingStep === 2 ? "#B8860B" : "#F5F5DC",
+                textShadow: "0 0 15px rgba(218, 165, 32, 0.5)",
                 fontWeight: "bold"
               }}
             >
@@ -193,7 +193,7 @@ function QuizPage() {
           <div key={fadeKey} className="fade-in">
             <p
               className="text-center text-xl sm:text-2xl leading-snug mb-8"
-              style={{ fontFamily: "'EB Garamond', serif", color: "#FFF" }}
+              style={{ fontFamily: "'EB Garamond', serif", color: "#F5F5DC" }}
             >
               {current.q}
             </p>
@@ -211,7 +211,7 @@ function QuizPage() {
             </div>
             <p
               className="mt-8 text-center text-xs sm:text-sm italic"
-              style={{ fontFamily: "'EB Garamond', serif", color: "#E0A9A9" }}
+              style={{ fontFamily: "'EB Garamond', serif", color: "#C9B68A" }}
             >
               Pergunta {index + 1} de {QUESTIONS.length}
             </p>
@@ -224,35 +224,88 @@ function QuizPage() {
 
 function Crest() {
   return (
-    <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+    <svg width="88" height="88" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
       <defs>
-        <linearGradient id="fire" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#FF8C00" />
-          <stop offset="50%" stopColor="#FF4500" />
-          <stop offset="100%" stopColor="#8B0000" />
+        {/* Gold gradients for 3D metallic coin effect */}
+        <radialGradient id="coin-base" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+          <stop offset="0%" stopColor="#FFE07D" />
+          <stop offset="45%" stopColor="#D4AF37" />
+          <stop offset="70%" stopColor="#AA7C11" />
+          <stop offset="90%" stopColor="#8B6508" />
+          <stop offset="100%" stopColor="#553F00" />
+        </radialGradient>
+        <linearGradient id="gold-emboss" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#FFF5D6" />
+          <stop offset="50%" stopColor="#D4AF37" />
+          <stop offset="100%" stopColor="#553F00" />
         </linearGradient>
+        <filter id="emboss-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0.5" dy="1" stdDeviation="0.8" floodColor="#000" floodOpacity="0.6"/>
+        </filter>
       </defs>
-      {/* Crown */}
-      <path
-        d="M20 38 L30 22 L40 34 L50 18 L60 34 L70 22 L80 38 L75 50 L25 50 Z"
-        fill="url(#fire)"
-        stroke="#8B0000"
-        strokeWidth="1.2"
-      />
-      <circle cx="30" cy="22" r="2.5" fill="#FFD700" stroke="#8B0000" />
-      <circle cx="50" cy="18" r="3" fill="#FFD700" stroke="#8B0000" />
-      <circle cx="70" cy="22" r="2.5" fill="#FFD700" stroke="#8B0000" />
-      {/* Crossed keys */}
-      <g stroke="url(#fire)" strokeWidth="3" strokeLinecap="round" fill="none">
-        <line x1="30" y1="58" x2="72" y2="92" />
-        <line x1="70" y1="58" x2="28" y2="92" />
+
+      {/* Outer rim */}
+      <circle cx="50" cy="50" r="48" fill="url(#coin-base)" stroke="#3A2A00" strokeWidth="1.5" />
+      <circle cx="50" cy="50" r="45" fill="none" stroke="#FFE9A3" strokeWidth="0.8" strokeDasharray="1.5, 1" opacity="0.8" />
+
+      {/* Inner circle */}
+      <circle cx="50" cy="50" r="42" fill="none" stroke="#684C00" strokeWidth="1" />
+      <circle cx="50" cy="50" r="41" fill="none" stroke="#FFE07D" strokeWidth="0.5" />
+
+      {/* Laurel wreath along the bottom arc */}
+      <g fill="url(#gold-emboss)" filter="url(#emboss-shadow)" opacity="0.9">
+        {/* Left branch */}
+        <path d="M 22 55 C 24 67, 34 77, 48 78 C 45 75, 41 73, 38 68 C 35 64, 30 60, 22 55 Z" opacity="0.3" />
+        {/* Leaves */}
+        <path d="M 24 58 Q 21 62 25 64 Q 28 62 25 58 Z" />
+        <path d="M 27 64 Q 24 68 29 70 Q 32 67 28 64 Z" />
+        <path d="M 32 70 Q 29 75 34 76 Q 37 72 33 70 Z" />
+        <path d="M 39 74 Q 37 79 42 79 Q 44 75 40 74 Z" />
+        {/* Right branch */}
+        <path d="M 78 55 C 76 67, 66 77, 52 78 C 55 75, 59 73, 62 68 C 65 64, 70 60, 78 55 Z" opacity="0.3" />
+        <path d="M 76 58 Q 79 62 75 64 Q 72 62 75 58 Z" />
+        <path d="M 73 64 Q 76 68 71 70 Q 68 67 72 64 Z" />
+        <path d="M 68 70 Q 71 75 66 76 Q 63 72 67 70 Z" />
+        <path d="M 61 74 Q 63 79 58 79 Q 56 75 60 74 Z" />
       </g>
-      <circle cx="30" cy="58" r="5" fill="none" stroke="url(#fire)" strokeWidth="3" />
-      <circle cx="70" cy="58" r="5" fill="none" stroke="url(#fire)" strokeWidth="3" />
-      <rect x="69" y="88" width="6" height="3" fill="url(#fire)" />
-      <rect x="69" y="83" width="4" height="3" fill="url(#fire)" />
-      <rect x="25" y="88" width="6" height="3" fill="url(#fire)" />
-      <rect x="27" y="83" width="4" height="3" fill="url(#fire)" />
+
+      {/* Hebrew / Mystical characters on the top rim */}
+      <g fill="#4A3500" fontFamily="serif" fontSize="5" fontWeight="bold" letterSpacing="1">
+        <text x="24" y="28" transform="rotate(-35 24 28)">ש</text>
+        <text x="32" y="22" transform="rotate(-20 32 22)">ל</text>
+        <text x="41" y="18" transform="rotate(-5 41 18)">מ</text>
+        <text x="50" y="17" transform="rotate(10 50 17)">ה</text>
+        <text x="59" y="19" transform="rotate(25 59 19)">מ</text>
+        <text x="67" y="23" transform="rotate(40 67 23)">ל</text>
+        <text x="74" y="30" transform="rotate(55 74 30)">ך</text>
+      </g>
+
+      {/* Solomon Portrait (Facing Left, bearded, with crown) */}
+      <g fill="url(#gold-emboss)" filter="url(#emboss-shadow)">
+        {/* Hair and Beard */}
+        <path d="M 45 35 Q 40 40 42 48 Q 44 56 42 62 C 43 65, 48 67, 52 64 C 54 62, 53 58, 56 56 C 58 54, 57 48, 55 46 Q 54 38 45 35 Z" />
+        
+        {/* Face profile */}
+        <path d="M 44 38 C 42 38, 41 40, 40 42 C 39 43, 39 45, 38 45 C 37 45, 36 46, 37 47 C 38 48, 39 48, 38 49 C 37 50, 36 51, 38 52 C 39 52, 40 52, 39 53 C 38 55, 39 56, 42 56 C 44 56, 46 54, 46 51 C 46 45, 46 40, 44 38 Z" />
+
+        {/* Crown */}
+        <path d="M 43 35 L 40 26 L 45 30 L 50 24 L 52 30 L 56 27 L 54 36 Z" />
+        <circle cx="40" cy="26" r="0.8" fill="#FFE9A3" />
+        <circle cx="50" cy="24" r="1" fill="#FFE9A3" />
+        <circle cx="56" cy="27" r="0.8" fill="#FFE9A3" />
+        
+        {/* Details: Eye */}
+        <path d="M 41 42 Q 42 41 43 42" stroke="#553F00" strokeWidth="0.6" fill="none" />
+        <circle cx="42" cy="43.5" r="0.5" fill="#332200" />
+        
+        {/* Mustache and Beard details */}
+        <path d="M 39 50 C 40 50, 41 51, 41 52 C 40 53, 39 53, 38 53 C 38 52, 38 51, 39 50 Z" stroke="#553F00" strokeWidth="0.3" />
+        <path d="M 41 53 C 43 55, 41 58, 45 59 C 47 60, 48 57, 49 55" stroke="#553F00" strokeWidth="0.4" fill="none" />
+        
+        {/* Clothes drape */}
+        <path d="M 45 58 C 45 62, 39 67, 34 71 C 36 73, 40 73, 44 72 C 49 71, 55 69, 58 64 C 54 62, 48 59, 45 58 Z" />
+        <path d="M 44 60 C 46 64, 52 66, 56 65" stroke="#FFE9A3" strokeWidth="0.5" fill="none" />
+      </g>
     </svg>
   );
 }
