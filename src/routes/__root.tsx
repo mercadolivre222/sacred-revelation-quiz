@@ -16,7 +16,11 @@ function NotFoundComponent() {
       <section className="parchment relative w-full max-w-md rounded-md px-6 py-10 sm:px-10 sm:py-12 text-center">
         <h1
           className="text-6xl font-bold tracking-wide"
-          style={{ fontFamily: "'Cormorant Garamond', serif", color: "#B8860B", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            color: "#B8860B",
+            textShadow: "0 2px 4px rgba(0,0,0,0.6)",
+          }}
         >
           404
         </h1>
@@ -55,7 +59,11 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
       <section className="parchment relative w-full max-w-md rounded-md px-6 py-10 sm:px-10 sm:py-12 text-center">
         <h1
           className="text-4xl font-bold tracking-wide"
-          style={{ fontFamily: "'Cormorant Garamond', serif", color: "#B8860B", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            color: "#B8860B",
+            textShadow: "0 2px 4px rgba(0,0,0,0.6)",
+          }}
         >
           Erro Inesperado
         </h1>
@@ -69,7 +77,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           className="mt-4 text-base leading-relaxed"
           style={{ fontFamily: "'EB Garamond', serif", color: "#F5F5DC" }}
         >
-          Ocorreu um erro ao sintonizar a sabedoria oculta. Tente carregar novamente ou retorne ao início.
+          Ocorreu um erro ao sintonizar a sabedoria oculta. Tente carregar novamente ou retorne ao
+          início.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
           <button
@@ -101,14 +110,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "A Sondagem da Esfera de Escassez" },
-      { name: "description", content: "Uma sondagem profunda da esfera de escassez e abundância de Salomão." },
+      {
+        name: "description",
+        content: "Uma sondagem profunda da esfera de escassez e abundância de Salomão.",
+      },
       { name: "author", content: "Antigravity" },
       { property: "og:title", content: "A Sondagem da Esfera de Escassez" },
-      { property: "og:description", content: "Uma sondagem profunda da esfera de escassez e abundância de Salomão." },
+      {
+        property: "og:description",
+        content: "Uma sondagem profunda da esfera de escassez e abundância de Salomão.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "A Sondagem da Esfera de Escassez" },
-      { name: "twitter:description", content: "Uma sondagem profunda da esfera de escassez e abundância de Salomão." },
+      {
+        name: "twitter:description",
+        content: "Uma sondagem profunda da esfera de escassez e abundância de Salomão.",
+      },
     ],
     links: [
       {

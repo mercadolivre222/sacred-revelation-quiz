@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState, useId } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export const Route = createFileRoute("/")({
   component: QuizPage,
@@ -96,7 +96,7 @@ function QuizPage() {
       "Rastreando Maldição Hereditária...",
       "Verificando Falta de Conhecimento...",
       "Avaliando Compromisso Sagrado...",
-      "PREPARANDO SUA SENTENÇA FINAL..."
+      "PREPARANDO SUA SENTENÇA FINAL...",
     ];
     return steps[index] || "PREPARANDO SUA SENTENÇA FINAL...";
   }, [index]);
@@ -123,26 +123,32 @@ function QuizPage() {
   return (
     <main className="quiz-bg min-h-screen w-full flex flex-col items-center justify-center px-4 py-10">
       <section className="parchment relative w-full max-w-2xl rounded-md px-6 py-10 sm:px-12 sm:py-14 mb-6">
-        
-        {/* WELCOME SCREEN */}
-        <div style={{ display: !started ? "block" : "none" }}>
-          {/* Crest */}
+        {/* Crest and Title - Rendered once globally, hidden during loading */}
+        {!loading && (
           <div className="flex flex-col items-center mb-6">
             <Crest />
             <h1
               className="mt-4 text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide"
-              style={{ fontFamily: "'Cormorant Garamond', serif", color: "#c5a880", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                color: "#c5a880",
+                textShadow: "0 2px 4px rgba(0,0,0,0.6)",
+              }}
             >
               A SONDAGEM DA ESFERA DE ESCASSEZ
             </h1>
             <div className="mt-3 h-[2px] w-32 bg-gradient-to-r from-transparent via-[#c5a880] to-transparent" />
           </div>
+        )}
 
+        {/* WELCOME SCREEN */}
+        <div style={{ display: !started ? "block" : "none" }}>
           <p
             className="text-center text-lg sm:text-xl leading-relaxed mb-8"
             style={{ fontFamily: "'EB Garamond', serif", color: "#F5F5DC" }}
           >
-            Desvende as chaves secretas de Salomão para quebrar a maldição financeira hereditária e destravar a sua prosperidade. A avaliação das suas raízes espirituais começará a seguir.
+            Desvende as chaves secretas de Salomão para quebrar a maldição financeira hereditária e
+            destravar a sua prosperidade. A avaliação das suas raízes espirituais começará a seguir.
           </p>
 
           <div className="flex justify-center">
@@ -158,25 +164,13 @@ function QuizPage() {
 
         {/* QUIZ SCREEN */}
         <div style={{ display: started && !loading ? "block" : "none" }}>
-          {/* Crest */}
-          <div className="flex flex-col items-center mb-6">
-            <Crest />
-            <h1
-              className="mt-4 text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide"
-              style={{ fontFamily: "'Cormorant Garamond', serif", color: "#c5a880", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}
-            >
-              A SONDAGEM DA ESFERA DE ESCASSEZ
-            </h1>
-            <div className="mt-3 h-[2px] w-32 bg-gradient-to-r from-transparent via-[#c5a880] to-transparent" />
-          </div>
-
           {/* Progress */}
           <div className="mb-8">
             <p
               className="text-center text-sm sm:text-base mb-2 tracking-wide font-medium"
               style={{ fontFamily: "'EB Garamond', serif", color: "#a89d8c" }}
             >
-              {stage} (Nível: {((index + 1) * 12.5)}%)
+              {stage} (Nível: {(index + 1) * 12.5}%)
             </p>
             <div className="h-3 w-full rounded-full bg-black/80 border border-[#4a3c2c]/80 overflow-hidden">
               <div
@@ -219,14 +213,13 @@ function QuizPage() {
                 fontFamily: "'Cormorant Garamond', serif",
                 color: "#c5a880",
                 textShadow: "0 0 15px rgba(197, 168, 128, 0.5)",
-                fontWeight: "bold"
+                fontWeight: "bold",
               }}
             >
               Redirecionando para a Libertação...
             </p>
           </div>
         </div>
-
       </section>
 
       {/* Footer outside the card */}
@@ -237,7 +230,7 @@ function QuizPage() {
         >
           {index + 1} / {QUESTIONS.length}
         </p>
-        
+
         {/* Subtle four-point star icon on the bottom right as seen in the image */}
         <div className="absolute right-4 bottom-0 text-[#9e9382] opacity-80" aria-hidden="true">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -250,13 +243,19 @@ function QuizPage() {
 }
 
 function Crest() {
-  const id = useId();
-  const coinBaseId = `coin-base-${id.replace(/:/g, "")}`;
-  const goldEmbossId = `gold-emboss-${id.replace(/:/g, "")}`;
-  const embossShadowId = `emboss-shadow-${id.replace(/:/g, "")}`;
+  const coinBaseId = "crest-coin-base";
+  const goldEmbossId = "crest-gold-emboss";
+  const embossShadowId = "crest-emboss-shadow";
 
   return (
-    <svg width="88" height="88" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+    <svg
+      width="88"
+      height="88"
+      viewBox="0 0 100 100"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
       <defs>
         {/* Gold gradients for 3D metallic coin effect */}
         <radialGradient id={coinBaseId} cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
@@ -272,13 +271,29 @@ function Crest() {
           <stop offset="100%" stopColor="#553F00" />
         </linearGradient>
         <filter id={embossShadowId} x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0.5" dy="1" stdDeviation="0.8" floodColor="#000" floodOpacity="0.6"/>
+          <feDropShadow dx="0.5" dy="1" stdDeviation="0.8" floodColor="#000" floodOpacity="0.6" />
         </filter>
       </defs>
 
       {/* Outer rim */}
-      <circle cx="50" cy="50" r="48" fill={`url(#${coinBaseId})`} stroke="#3A2A00" strokeWidth="1.5" />
-      <circle cx="50" cy="50" r="45" fill="none" stroke="#FFE9A3" strokeWidth="0.8" strokeDasharray="1.5, 1" opacity="0.8" />
+      <circle
+        cx="50"
+        cy="50"
+        r="48"
+        fill={`url(#${coinBaseId})`}
+        stroke="#3A2A00"
+        strokeWidth="1.5"
+      />
+      <circle
+        cx="50"
+        cy="50"
+        r="45"
+        fill="none"
+        stroke="#FFE9A3"
+        strokeWidth="0.8"
+        strokeDasharray="1.5, 1"
+        opacity="0.8"
+      />
 
       {/* Inner circle */}
       <circle cx="50" cy="50" r="42" fill="none" stroke="#684C00" strokeWidth="1" />
@@ -287,14 +302,20 @@ function Crest() {
       {/* Laurel wreath along the bottom arc */}
       <g fill={`url(#${goldEmbossId})`} filter={`url(#${embossShadowId})`} opacity="0.9">
         {/* Left branch */}
-        <path d="M 22 55 C 24 67, 34 77, 48 78 C 45 75, 41 73, 38 68 C 35 64, 30 60, 22 55 Z" opacity="0.3" />
+        <path
+          d="M 22 55 C 24 67, 34 77, 48 78 C 45 75, 41 73, 38 68 C 35 64, 30 60, 22 55 Z"
+          opacity="0.3"
+        />
         {/* Leaves */}
         <path d="M 24 58 Q 21 62 25 64 Q 28 62 25 58 Z" />
         <path d="M 27 64 Q 24 68 29 70 Q 32 67 28 64 Z" />
         <path d="M 32 70 Q 29 75 34 76 Q 37 72 33 70 Z" />
         <path d="M 39 74 Q 37 79 42 79 Q 44 75 40 74 Z" />
         {/* Right branch */}
-        <path d="M 78 55 C 76 67, 66 77, 52 78 C 55 75, 59 73, 62 68 C 65 64, 70 60, 78 55 Z" opacity="0.3" />
+        <path
+          d="M 78 55 C 76 67, 66 77, 52 78 C 55 75, 59 73, 62 68 C 65 64, 70 60, 78 55 Z"
+          opacity="0.3"
+        />
         <path d="M 76 58 Q 79 62 75 64 Q 72 62 75 58 Z" />
         <path d="M 73 64 Q 76 68 71 70 Q 68 67 72 64 Z" />
         <path d="M 68 70 Q 71 75 66 76 Q 63 72 67 70 Z" />
@@ -303,20 +324,34 @@ function Crest() {
 
       {/* Hebrew / Mystical characters on the top rim */}
       <g fill="#4A3500" fontFamily="serif" fontSize="5" fontWeight="bold" letterSpacing="1">
-        <text x="24" y="28" transform="rotate(-35 24 28)">ש</text>
-        <text x="32" y="22" transform="rotate(-20 32 22)">ל</text>
-        <text x="41" y="18" transform="rotate(-5 41 18)">מ</text>
-        <text x="50" y="17" transform="rotate(10 50 17)">ה</text>
-        <text x="59" y="19" transform="rotate(25 59 19)">מ</text>
-        <text x="67" y="23" transform="rotate(40 67 23)">ל</text>
-        <text x="74" y="30" transform="rotate(55 74 30)">ך</text>
+        <text x="24" y="28" transform="rotate(-35 24 28)">
+          ש
+        </text>
+        <text x="32" y="22" transform="rotate(-20 32 22)">
+          ל
+        </text>
+        <text x="41" y="18" transform="rotate(-5 41 18)">
+          מ
+        </text>
+        <text x="50" y="17" transform="rotate(10 50 17)">
+          ה
+        </text>
+        <text x="59" y="19" transform="rotate(25 59 19)">
+          מ
+        </text>
+        <text x="67" y="23" transform="rotate(40 67 23)">
+          ל
+        </text>
+        <text x="74" y="30" transform="rotate(55 74 30)">
+          ך
+        </text>
       </g>
 
       {/* Solomon Portrait (Facing Left, bearded, with crown) */}
       <g fill={`url(#${goldEmbossId})`} filter={`url(#${embossShadowId})`}>
         {/* Hair and Beard */}
         <path d="M 45 35 Q 40 40 42 48 Q 44 56 42 62 C 43 65, 48 67, 52 64 C 54 62, 53 58, 56 56 C 58 54, 57 48, 55 46 Q 54 38 45 35 Z" />
-        
+
         {/* Face profile */}
         <path d="M 44 38 C 42 38, 41 40, 40 42 C 39 43, 39 45, 38 45 C 37 45, 36 46, 37 47 C 38 48, 39 48, 38 49 C 37 50, 36 51, 38 52 C 39 52, 40 52, 39 53 C 38 55, 39 56, 42 56 C 44 56, 46 54, 46 51 C 46 45, 46 40, 44 38 Z" />
 
@@ -325,15 +360,24 @@ function Crest() {
         <circle cx="40" cy="26" r="0.8" fill="#FFE9A3" />
         <circle cx="50" cy="24" r="1" fill="#FFE9A3" />
         <circle cx="56" cy="27" r="0.8" fill="#FFE9A3" />
-        
+
         {/* Details: Eye */}
         <path d="M 41 42 Q 42 41 43 42" stroke="#553F00" strokeWidth="0.6" fill="none" />
         <circle cx="42" cy="43.5" r="0.5" fill="#332200" />
-        
+
         {/* Mustache and Beard details */}
-        <path d="M 39 50 C 40 50, 41 51, 41 52 C 40 53, 39 53, 38 53 C 38 52, 38 51, 39 50 Z" stroke="#553F00" strokeWidth="0.3" />
-        <path d="M 41 53 C 43 55, 41 58, 45 59 C 47 60, 48 57, 49 55" stroke="#553F00" strokeWidth="0.4" fill="none" />
-        
+        <path
+          d="M 39 50 C 40 50, 41 51, 41 52 C 40 53, 39 53, 38 53 C 38 52, 38 51, 39 50 Z"
+          stroke="#553F00"
+          strokeWidth="0.3"
+        />
+        <path
+          d="M 41 53 C 43 55, 41 58, 45 59 C 47 60, 48 57, 49 55"
+          stroke="#553F00"
+          strokeWidth="0.4"
+          fill="none"
+        />
+
         {/* Clothes drape */}
         <path d="M 45 58 C 45 62, 39 67, 34 71 C 36 73, 40 73, 44 72 C 49 71, 55 69, 58 64 C 54 62, 48 59, 45 58 Z" />
         <path d="M 44 60 C 46 64, 52 66, 56 65" stroke="#FFE9A3" strokeWidth="0.5" fill="none" />
