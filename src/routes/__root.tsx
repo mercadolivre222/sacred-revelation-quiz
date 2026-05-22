@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -161,6 +162,84 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // 1. Disable right click (prevents Inspect Element access)
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+    };
+    document.addEventListener("contextmenu", handleContextMenu);
+
+    // 2. Disable dev tools keyboard shortcuts
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Disable F12
+      if (e.key === "F12") {
+        e.preventDefault();
+        return false;
+      }
+      // Disable Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Element Picker)
+      if (
+        e.ctrlKey &&
+        e.shiftKey &&
+        (e.key === "I" ||
+          e.key === "J" ||
+          e.key === "C" ||
+          e.key === "i" ||
+          e.key === "j" ||
+          e.key === "c")
+      ) {
+        e.preventDefault();
+        return false;
+      }
+      // Disable Ctrl+U (View Source Code)
+      if (e.ctrlKey && (e.key === "U" || e.key === "u")) {
+        e.preventDefault();
+        return false;
+      }
+      // Disable Ctrl+S (Save Page)
+      if (e.ctrlKey && (e.key === "S" || e.key === "s")) {
+        e.preventDefault();
+        return false;
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    // 3. Disable image dragging (prevent downloading / saving image assets easily)
+    const handleDragStart = (e: DragEvent) => {
+      if ((e.target as HTMLElement).tagName === "IMG") {
+        e.preventDefault();
+      }
+    };
+    document.addEventListener("dragstart", handleDragStart);
+
+    // 4. Disable copy event triggers
+    const handleCopy = (e: ClipboardEvent) => {
+      e.preventDefault();
+    };
+    document.addEventListener("copy", handleCopy);
+
+    // 5. Anti-debugger console protection
+    let debugInterval: NodeJS.Timeout;
+    try {
+      debugInterval = setInterval(() => {
+        (function () {
+          (function a() {
+            debugger;
+          })();
+        })();
+      }, 200);
+    } catch (err) {}
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      window.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("dragstart", handleDragStart);
+      document.removeEventListener("copy", handleCopy);
+      if (debugInterval) clearInterval(debugInterval);
+    };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
