@@ -121,8 +121,8 @@ function QuizPage() {
   const current = QUESTIONS[index];
 
   return (
-    <main className="quiz-bg min-h-screen w-full flex items-center justify-center px-4 py-10">
-      <section className="parchment relative w-full max-w-2xl rounded-md px-6 py-10 sm:px-12 sm:py-14">
+    <main className="quiz-bg min-h-screen w-full flex flex-col items-center justify-center px-4 py-10">
+      <section className="parchment relative w-full max-w-2xl rounded-md px-6 py-10 sm:px-12 sm:py-14 mb-6">
         
         {/* WELCOME SCREEN */}
         <div style={{ display: !started ? "block" : "none" }}>
@@ -131,11 +131,11 @@ function QuizPage() {
             <Crest />
             <h1
               className="mt-4 text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide"
-              style={{ fontFamily: "'Cormorant Garamond', serif", color: "#B8860B", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: "#c5a880", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}
             >
               A SONDAGEM DA ESFERA DE ESCASSEZ
             </h1>
-            <div className="mt-3 h-[2px] w-32 bg-gradient-to-r from-transparent via-[#B8860B] to-transparent" />
+            <div className="mt-3 h-[2px] w-32 bg-gradient-to-r from-transparent via-[#c5a880] to-transparent" />
           </div>
 
           <p
@@ -160,26 +160,25 @@ function QuizPage() {
         <div style={{ display: started && !loading ? "block" : "none" }}>
           {/* Crest */}
           <div className="flex flex-col items-center mb-6">
-            < Crest />
+            <Crest />
             <h1
               className="mt-4 text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide"
-              style={{ fontFamily: "'Cormorant Garamond', serif", color: "#B8860B", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: "#c5a880", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}
             >
               A SONDAGEM DA ESFERA DE ESCASSEZ
             </h1>
-            <div className="mt-3 h-[2px] w-32 bg-gradient-to-r from-transparent via-[#B8860B] to-transparent" />
+            <div className="mt-3 h-[2px] w-32 bg-gradient-to-r from-transparent via-[#c5a880] to-transparent" />
           </div>
 
           {/* Progress */}
           <div className="mb-8">
             <p
               className="text-center text-sm sm:text-base mb-2 tracking-wide font-medium"
-              style={{ fontFamily: "'EB Garamond', serif", color: "#F5F5DC" }}
+              style={{ fontFamily: "'EB Garamond', serif", color: "#a89d8c" }}
             >
-              {stage}{" "}
-              <span style={{ color: "#DAA520" }}>(Nível: {((index + 1) * 12.5)}%)</span>
+              {stage} (Nível: {((index + 1) * 12.5)}%)
             </p>
-            <div className="h-3 w-full rounded-full bg-black/60 border border-[#B8860B]/40 overflow-hidden">
+            <div className="h-3 w-full rounded-full bg-black/80 border border-[#4a3c2c]/80 overflow-hidden">
               <div
                 className="h-full sacred-bar transition-all duration-700 ease-out"
                 style={{ width: `${(index + 1) * 12.5}%` }}
@@ -200,19 +199,13 @@ function QuizPage() {
                 <button
                   key={opt}
                   onClick={handleAnswer}
-                  className="gold-btn w-full px-5 py-4 rounded-md text-left sm:text-center text-base sm:text-lg"
+                  className="gold-btn w-full px-5 py-4 rounded-md text-center text-base sm:text-lg"
                   style={{ fontFamily: "'EB Garamond', serif" }}
                 >
                   {opt}
                 </button>
               ))}
             </div>
-            <p
-              className="mt-8 text-center text-xs sm:text-sm italic"
-              style={{ fontFamily: "'EB Garamond', serif", color: "#C9B68A" }}
-            >
-              Pergunta {index + 1} de {QUESTIONS.length}
-            </p>
           </div>
         </div>
 
@@ -224,8 +217,8 @@ function QuizPage() {
               className="text-center text-xl sm:text-2xl tracking-wide animate-pulse"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                color: "#DAA520",
-                textShadow: "0 0 15px rgba(218, 165, 32, 0.5)",
+                color: "#c5a880",
+                textShadow: "0 0 15px rgba(197, 168, 128, 0.5)",
                 fontWeight: "bold"
               }}
             >
@@ -235,6 +228,23 @@ function QuizPage() {
         </div>
 
       </section>
+
+      {/* Footer outside the card */}
+      <div className="flex flex-col items-center w-full max-w-2xl relative select-none">
+        <p
+          className="text-center text-sm font-semibold tracking-widest"
+          style={{ fontFamily: "'EB Garamond', serif", color: "#9e9382" }}
+        >
+          {index + 1} / {QUESTIONS.length}
+        </p>
+        
+        {/* Subtle four-point star icon on the bottom right as seen in the image */}
+        <div className="absolute right-4 bottom-0 text-[#9e9382] opacity-80" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+          </svg>
+        </div>
+      </div>
     </main>
   );
 }

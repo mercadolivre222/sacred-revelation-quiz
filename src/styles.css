@@ -133,7 +133,7 @@
   }
 
   body {
-    background-color: #000000;
+    background: radial-gradient(circle at center, #1b1b1b 0%, #0a0a0a 100%) !important;
     color: var(--color-foreground);
     font-family: 'EB Garamond', Garamond, 'Times New Roman', serif;
   }
@@ -141,57 +141,61 @@
 
 /* ===== Mystical Quiz / Altar Theme (Dark Milenar-Dourado) ===== */
 .quiz-bg {
-  background-color: #000000 !important;
-  background-image: none !important;
+  background: radial-gradient(circle at center, #1b1b1b 0%, #0a0a0a 100%) !important;
+  background-image: radial-gradient(circle at center, #1b1b1b 0%, #0a0a0a 100%) !important;
 }
 
 .parchment {
-  background-color: #110e0a;
-  background-image:
-    radial-gradient(ellipse at 50% 0%, rgba(218, 165, 32, 0.15) 0%, rgba(0, 0, 0, 0) 50%),
-    radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 60%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.28  0 0 0 0 0.22  0 0 0 0 0.14  0 0 0 0 0.45 0'/></filter><rect width='100%25' height='100%25' filter='url(%23p)'/></svg>");
-  border: 4px double #b8860b !important;
-  outline: 1px solid #b8860b;
-  outline-offset: -6px;
-  box-shadow:
-    0 0 0 1px rgba(184, 134, 11, 0.5),
-    0 20px 50px rgba(0, 0, 0, 0.9),
-    inset 0 0 100px rgba(0, 0, 0, 0.8);
+  position: relative;
+  background-color: #121212 !important;
+  background-image: none !important;
+  border: 1.5px solid #c5a880 !important;
+  border-radius: 12px !important;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.8),
+    0 5px 15px rgba(0, 0, 0, 0.5) !important;
+  outline: none !important;
+}
+
+.parchment::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  right: 7px;
+  bottom: 7px;
+  border: 1.5px solid #c5a880;
+  border-radius: 8px;
+  pointer-events: none;
 }
 
 .sacred-bar {
-  background: #b8860b !important;
-  box-shadow:
-    0 0 12px rgba(184, 134, 11, 0.85),
-    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  background: linear-gradient(90deg, #c5a059 0%, #dfb875 50%, #c5a059 100%) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25) !important;
+  border-radius: 9999px;
 }
 
 .gold-btn {
   color: #000000 !important;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  background:
-    repeating-linear-gradient(90deg, rgba(255,255,255, 0) 0px, rgba(255,255,255, 0.06) 1px, rgba(255,255,255, 0) 2px),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 35%, rgba(0, 0, 0, 0.15) 65%, rgba(0, 0, 0, 0.35) 100%),
-    #DAA520;
-  border: 2px solid #8b6508;
-  border-radius: 4px !important;
+  letter-spacing: 0.01em;
+  background: linear-gradient(180deg, #ebd1a7 0%, #d5b376 40%, #c39e58 100%) !important;
+  border: 1px solid #9e7f44 !important;
+  border-radius: 6px !important;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.3),
-    0 4px 10px rgba(0, 0, 0, 0.7);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 4px 12px rgba(0, 0, 0, 0.5) !important;
+  text-shadow: none !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   animation: gold-pulse 3.0s infinite ease-in-out;
 }
 .gold-btn:hover {
-  transform: translateY(-2px) scale(1.015);
-  filter: brightness(1.15);
+  transform: translateY(-1px);
+  filter: brightness(1.08);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    0 6px 20px rgba(218, 165, 32, 0.6);
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 6px 16px rgba(197, 160, 89, 0.4) !important;
 }
 .gold-btn:active {
   transform: translateY(0) scale(0.985);
@@ -201,16 +205,14 @@
   0%, 100% {
     transform: scale(1);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.5),
-      inset 0 -1px 2px rgba(0, 0, 0, 0.3),
-      0 4px 10px rgba(0, 0, 0, 0.7);
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      0 4px 12px rgba(0, 0, 0, 0.5);
   }
   50% {
-    transform: scale(1.015);
+    transform: scale(1.008);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.55),
-      inset 0 -1px 2px rgba(0, 0, 0, 0.3),
-      0 4px 18px rgba(218, 165, 32, 0.7);
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      0 4px 16px rgba(197, 160, 89, 0.5);
   }
 }
 
