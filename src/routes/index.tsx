@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useId } from "react";
 
 export const Route = createFileRoute("/")({
   component: QuizPage,
@@ -250,29 +250,34 @@ function QuizPage() {
 }
 
 function Crest() {
+  const id = useId();
+  const coinBaseId = `coin-base-${id.replace(/:/g, "")}`;
+  const goldEmbossId = `gold-emboss-${id.replace(/:/g, "")}`;
+  const embossShadowId = `emboss-shadow-${id.replace(/:/g, "")}`;
+
   return (
     <svg width="88" height="88" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
       <defs>
         {/* Gold gradients for 3D metallic coin effect */}
-        <radialGradient id="coin-base" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+        <radialGradient id={coinBaseId} cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
           <stop offset="0%" stopColor="#FFE07D" />
           <stop offset="45%" stopColor="#D4AF37" />
           <stop offset="70%" stopColor="#AA7C11" />
           <stop offset="90%" stopColor="#8B6508" />
           <stop offset="100%" stopColor="#553F00" />
         </radialGradient>
-        <linearGradient id="gold-emboss" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={goldEmbossId} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#FFF5D6" />
           <stop offset="50%" stopColor="#D4AF37" />
           <stop offset="100%" stopColor="#553F00" />
         </linearGradient>
-        <filter id="emboss-shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <filter id={embossShadowId} x="-20%" y="-20%" width="140%" height="140%">
           <feDropShadow dx="0.5" dy="1" stdDeviation="0.8" floodColor="#000" floodOpacity="0.6"/>
         </filter>
       </defs>
 
       {/* Outer rim */}
-      <circle cx="50" cy="50" r="48" fill="url(#coin-base)" stroke="#3A2A00" strokeWidth="1.5" />
+      <circle cx="50" cy="50" r="48" fill={`url(#${coinBaseId})`} stroke="#3A2A00" strokeWidth="1.5" />
       <circle cx="50" cy="50" r="45" fill="none" stroke="#FFE9A3" strokeWidth="0.8" strokeDasharray="1.5, 1" opacity="0.8" />
 
       {/* Inner circle */}
@@ -280,7 +285,7 @@ function Crest() {
       <circle cx="50" cy="50" r="41" fill="none" stroke="#FFE07D" strokeWidth="0.5" />
 
       {/* Laurel wreath along the bottom arc */}
-      <g fill="url(#gold-emboss)" filter="url(#emboss-shadow)" opacity="0.9">
+      <g fill={`url(#${goldEmbossId})`} filter={`url(#${embossShadowId})`} opacity="0.9">
         {/* Left branch */}
         <path d="M 22 55 C 24 67, 34 77, 48 78 C 45 75, 41 73, 38 68 C 35 64, 30 60, 22 55 Z" opacity="0.3" />
         {/* Leaves */}
@@ -308,7 +313,7 @@ function Crest() {
       </g>
 
       {/* Solomon Portrait (Facing Left, bearded, with crown) */}
-      <g fill="url(#gold-emboss)" filter="url(#emboss-shadow)">
+      <g fill={`url(#${goldEmbossId})`} filter={`url(#${embossShadowId})`}>
         {/* Hair and Beard */}
         <path d="M 45 35 Q 40 40 42 48 Q 44 56 42 62 C 43 65, 48 67, 52 64 C 54 62, 53 58, 56 56 C 58 54, 57 48, 55 46 Q 54 38 45 35 Z" />
         
