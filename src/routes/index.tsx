@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const REDIRECT_URL = "[INSIRA_A_URL_DA_SUA_PAGINA_DE_VENDAS_AQUI]";
+const REDIRECT_URL = "[INSIRA_SEU_LINK_AQUI]";
 
 type Q = { q: string; opts: string[] };
 
@@ -81,52 +81,32 @@ const QUESTIONS: Q[] = [
   },
 ];
 
-const LOADING_TEXTS = [
-  "PROCESSANDO SUA SENTENÇA...",
-  "MALDIÇÃO DE ESCASSEZ DETECTADA!",
-  "REDIRECIONANDO PARA A LIBERTAÇÃO FINANCEIRA...",
-];
-
-function getStageText(idx: number) {
-  const steps = [
-    { label: "Sondando Raízes Espirituais...", pct: 25 },
-    { label: "Analisando Humilhações Diárias...", pct: 35 },
-    { label: "Avaliando Danos Familiares...", pct: 45 },
-    { label: "Mapeando Ciclo de Escassez Futura...", pct: 55 },
-    { label: "Rastreando Maldição Hereditária...", pct: 65 },
-    { label: "Verificando Falta de Conhecimento...", pct: 75 },
-    { label: "Avaliando Compromisso Sagrado...", pct: 85 },
-    { label: "PREPARANDO SUA SENTENÇA FINAL...", pct: 95 }
-  ];
-  return steps[idx] || { label: "PREPARANDO SUA SENTENÇA FINAL...", pct: 95 };
-}
-
 function QuizPage() {
+  const [started, setStarted] = useState(false);
   const [index, setIndex] = useState(0);
   const [fadeKey, setFadeKey] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [loadingStep, setLoadingStep] = useState(0);
 
-  const stage = useMemo(
-    () => (loading ? { label: "REVELAÇÃO PRONTA", pct: 100 } : getStageText(index)),
-    [index, loading],
-  );
+  const stage = useMemo(() => {
+    const steps = [
+      "Sondando Raízes Espirituais...",
+      "Analisando Humilhações Diárias...",
+      "Avaliando Danos Familiares...",
+      "Mapeando Ciclo de Escassez Futura...",
+      "Rastreando Maldição Hereditária...",
+      "Verificando Falta de Conhecimento...",
+      "Avaliando Compromisso Sagrado...",
+      "PREPARANDO SUA SENTENÇA FINAL..."
+    ];
+    return steps[index] || "PREPARANDO SUA SENTENÇA FINAL...";
+  }, [index]);
 
   useEffect(() => {
     if (!loading) return;
-    let step = 0;
-    setLoadingStep(0);
-    const interval = setInterval(() => {
-      step += 1;
-      if (step < LOADING_TEXTS.length) setLoadingStep(step);
-    }, 1100);
     const timeout = setTimeout(() => {
       window.location.href = REDIRECT_URL;
-    }, 3500);
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timeout);
-    };
+    }, 3000);
+    return () => clearTimeout(timeout);
   }, [loading]);
 
   const handleAnswer = () => {
@@ -143,62 +123,80 @@ function QuizPage() {
   return (
     <main className="quiz-bg min-h-screen w-full flex items-center justify-center px-4 py-10">
       <section className="parchment relative w-full max-w-2xl rounded-md px-6 py-10 sm:px-12 sm:py-14">
-        {/* Crest */}
-        <div className="flex flex-col items-center mb-6">
-          <Crest />
-          <h1
-            className="mt-4 text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide"
-            style={{ fontFamily: "'Cormorant Garamond', serif", color: "#B8860B", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}
-          >
-            A SONDAGEM DA ESFERA DE ESCASSEZ
-          </h1>
-          <div className="mt-3 h-[2px] w-32 bg-gradient-to-r from-transparent via-[#B8860B] to-transparent" />
-        </div>
+        
+        {/* WELCOME SCREEN */}
+        <div style={{ display: !started ? "block" : "none" }}>
+          {/* Crest */}
+          <div className="flex flex-col items-center mb-6">
+            <Crest />
+            <h1
+              className="mt-4 text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide"
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: "#B8860B", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}
+            >
+              A SONDAGEM DA ESFERA DE ESCASSEZ
+            </h1>
+            <div className="mt-3 h-[2px] w-32 bg-gradient-to-r from-transparent via-[#B8860B] to-transparent" />
+          </div>
 
-        {/* Progress */}
-        <div className="mb-8">
           <p
-            className="text-center text-sm sm:text-base mb-2 tracking-wide font-medium"
+            className="text-center text-lg sm:text-xl leading-relaxed mb-8"
             style={{ fontFamily: "'EB Garamond', serif", color: "#F5F5DC" }}
           >
-            {stage.label}{" "}
-            <span style={{ color: "#DAA520" }}>(Nível: {stage.pct}%)</span>
+            Desvende as chaves secretas de Salomão para quebrar a maldição financeira hereditária e destravar a sua prosperidade. A avaliação das suas raízes espirituais começará a seguir.
           </p>
-          <div className="h-3 w-full rounded-full bg-black/60 border border-[#B8860B]/40 overflow-hidden">
-            <div
-              className="h-full sacred-bar transition-all duration-700 ease-out"
-              style={{ width: `${stage.pct}%` }}
-            />
+
+          <div className="flex justify-center">
+            <button
+              onClick={() => setStarted(true)}
+              className="gold-btn w-full px-5 py-4 rounded-md text-center text-lg sm:text-xl font-bold"
+              style={{ fontFamily: "'EB Garamond', serif" }}
+            >
+              INICIAR REVELAÇÃO
+            </button>
           </div>
         </div>
 
-        {/* Body */}
-        {loading ? (
-          <div className="flex flex-col items-center justify-center py-12 min-h-[260px]">
-            <div className="loader-ring mb-8" />
-            <p
-              key={loadingStep}
-              className="text-center text-xl sm:text-2xl fade-in tracking-wide animate-pulse"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                color: loadingStep === 1 ? "#DAA520" : loadingStep === 2 ? "#B8860B" : "#F5F5DC",
-                textShadow: "0 0 15px rgba(218, 165, 32, 0.5)",
-                fontWeight: "bold"
-              }}
+        {/* QUIZ SCREEN */}
+        <div style={{ display: started && !loading ? "block" : "none" }}>
+          {/* Crest */}
+          <div className="flex flex-col items-center mb-6">
+            < Crest />
+            <h1
+              className="mt-4 text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide"
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: "#B8860B", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}
             >
-              {LOADING_TEXTS[loadingStep]}
-            </p>
+              A SONDAGEM DA ESFERA DE ESCASSEZ
+            </h1>
+            <div className="mt-3 h-[2px] w-32 bg-gradient-to-r from-transparent via-[#B8860B] to-transparent" />
           </div>
-        ) : (
+
+          {/* Progress */}
+          <div className="mb-8">
+            <p
+              className="text-center text-sm sm:text-base mb-2 tracking-wide font-medium"
+              style={{ fontFamily: "'EB Garamond', serif", color: "#F5F5DC" }}
+            >
+              {stage}{" "}
+              <span style={{ color: "#DAA520" }}>(Nível: {((index + 1) * 12.5)}%)</span>
+            </p>
+            <div className="h-3 w-full rounded-full bg-black/60 border border-[#B8860B]/40 overflow-hidden">
+              <div
+                className="h-full sacred-bar transition-all duration-700 ease-out"
+                style={{ width: `${(index + 1) * 12.5}%` }}
+              />
+            </div>
+          </div>
+
+          {/* Question and options */}
           <div key={fadeKey} className="fade-in">
             <p
               className="text-center text-xl sm:text-2xl leading-snug mb-8"
               style={{ fontFamily: "'EB Garamond', serif", color: "#F5F5DC" }}
             >
-              {current.q}
+              {current?.q}
             </p>
             <div className="flex flex-col gap-4">
-              {current.opts.map((opt) => (
+              {current?.opts.map((opt) => (
                 <button
                   key={opt}
                   onClick={handleAnswer}
@@ -216,7 +214,26 @@ function QuizPage() {
               Pergunta {index + 1} de {QUESTIONS.length}
             </p>
           </div>
-        )}
+        </div>
+
+        {/* LOADING SCREEN */}
+        <div style={{ display: loading ? "block" : "none" }}>
+          <div className="flex flex-col items-center justify-center py-12 min-h-[300px]">
+            <div className="loader-ring mb-8" />
+            <p
+              className="text-center text-xl sm:text-2xl tracking-wide animate-pulse"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                color: "#DAA520",
+                textShadow: "0 0 15px rgba(218, 165, 32, 0.5)",
+                fontWeight: "bold"
+              }}
+            >
+              Redirecionando para a Libertação...
+            </p>
+          </div>
+        </div>
+
       </section>
     </main>
   );
