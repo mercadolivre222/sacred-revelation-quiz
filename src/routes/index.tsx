@@ -191,7 +191,7 @@ function QuizPage() {
           <div key={fadeKey} className="fade-in">
             <p
               className="text-center text-xl sm:text-2xl leading-snug mb-8"
-              style={{ fontFamily: "'EB Garamond', serif", color: "#F5F5DC" }}
+              style={{ fontFamily: "'EB Garamond', serif", color: "#FFFFFF" }}
             >
               {current?.q}
             </p>
