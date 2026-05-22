@@ -101,12 +101,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "A Sondagem da Esfera de Escassez" },
-      { name: "description", content: "A Sondagem da Esfera de Escassez de Salomão." },
+      { name: "description", content: "Uma sondagem profunda da esfera de escassez e abundância de Salomão." },
       { name: "author", content: "Antigravity" },
       { property: "og:title", content: "A Sondagem da Esfera de Escassez" },
-      { property: "og:description", content: "A Sondagem da Esfera de Escassez de Salomão." },
+      { property: "og:description", content: "Uma sondagem profunda da esfera de escassez e abundância de Salomão." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "A Sondagem da Esfera de Escassez" },
+      { name: "twitter:description", content: "Uma sondagem profunda da esfera de escassez e abundância de Salomão." },
     ],
     links: [
       {
