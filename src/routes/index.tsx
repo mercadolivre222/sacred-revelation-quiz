@@ -245,7 +245,7 @@ function QuizPage() {
 function Crest() {
   return (
     <img
-      src="/coin.jpg"
+      src="coin.jpg"
       alt="Brasão de Salomão"
       className="w-24 h-24 object-contain rounded-full"
       style={{ filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.6))" }}
