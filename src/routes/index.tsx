@@ -127,7 +127,7 @@ function QuizPage() {
         {/* Crest and Title - Rendered once globally, hidden during loading */}
         {!loading && (
           <div className="flex flex-col items-center mb-6">
-            <Crest />
+            <img src={salomonCoin} alt="Brasão de Salomão" className="mx-auto w-24 h-24 mb-6" />
             <h1
               className="mt-4 text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide"
               style={{
@@ -240,16 +240,5 @@ function QuizPage() {
         </div>
       </div>
     </main>
-  );
-}
-
-function Crest() {
-  return (
-    <img
-      src={salomonCoin}
-      alt="Brasão de Salomão"
-      className="mx-auto w-24 h-24 mb-6 object-contain rounded-full"
-      style={{ filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.6))" }}
-    />
   );
 }
