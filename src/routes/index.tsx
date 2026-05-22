@@ -19,54 +19,86 @@ export const Route = createFileRoute("/")({
 
 const REDIRECT_URL = "[INSIRA_A_URL_DA_SUA_PAGINA_DE_VENDAS_AQUI]";
 
-type Q = { q: string; opts: [string, string] };
+type Q = { q: string; opts: string[] };
 
 const QUESTIONS: Q[] = [
   {
-    q: "Você sente que existe uma força invisível que afasta o dinheiro de você?",
-    opts: ["Sim, parece que quanto mais ganho, mais ele some", "Sinto um peso constante que me trava hoje"],
+    q: "Você sente que, por mais que ore e trabalhe, a sua vida financeira parece estar sob uma maldição que você não consegue quebrar?",
+    opts: [
+      "Sim, sinto que minha vida está totalmente amarrada e travada",
+      "Trabalho como escravo e o dinheiro some antes de entrar",
+    ],
   },
   {
-    q: "Suas dívidas hoje são um fardo que tira o sono da sua família?",
-    opts: ["Sim, não aguento mais as cobranças e a humilhação", "É uma angústia diária que me consome por dentro"],
+    q: "Qual dessas humilhações você não aguenta mais passar no seu dia a dia?",
+    opts: [
+      "Ver minha família passando vontade e não poder dar o básico",
+      "Deitar a cabeça no travesseiro e chorar escondido com medo do amanhã",
+      "O olhar de julgamento das pessoas que me veem fracassar",
+    ],
   },
   {
-    q: "Você já sentiu que, por mais que trabalhe, sua vida financeira é um deserto?",
-    opts: ["Sim, trabalho como escravo e continuo na escassez", "Sinto que meu esforço nunca é recompensado"],
+    q: "O seu estresse com a falta de dinheiro já começou a afetar a paz dentro da sua casa e o seu relacionamento?",
+    opts: [
+      "Sim, as cobranças e as brigas estão destruindo o meu lar",
+      "Sim, sinto uma vergonha profunda diante dos meus filhos/parceiro",
+    ],
   },
   {
-    q: "Qual o valor estimado que você precisaria hoje para quebrar as correntes das dívidas?",
-    opts: ["Preciso de um milagre urgente (até R$ 5.000)", "Minha liberdade custa caro (R$ 20.000 ou mais)"],
+    q: "Se você não quebrar esse ciclo de escassez hoje, como estará a sua vida financeira daqui a 6 meses?",
+    opts: [
+      "Pior do que hoje, atolado em dívidas e no desespero total",
+      "Humilhado, dependendo da ajuda ou da pena dos outros",
+    ],
   },
   {
-    q: "Você acredita que a escassez financeira pode ser uma maldição que vem de gerações?",
-    opts: ["Sim, meus pais sofreram e não quero isso pros meus filhos", "Talvez, parece que o destino da minha família é a luta"],
+    q: "Você já percebeu que as mesmas dificuldades financeiras que seus pais enfrentaram estão se repetindo EXATAMENTE igual na sua vida?",
+    opts: [
+      "Sim, vejo que é uma maldição hereditária que passou para mim",
+      "Sim, e tenho um medo profundo de deixar essa herança maldita para meus filhos",
+    ],
   },
   {
-    q: "Sabendo que Salomão tinha o código da riqueza, você se sente pronto para recebê-lo?",
-    opts: ["Sim, Deus me trouxe aqui para ter essa revelação", "Estou cansado de sofrer, preciso dessa chave agora"],
+    q: "Você sabia que a Bíblia diz que o povo sofre por falta de conhecimento, e que Salomão deixou chaves exatas para sair da miséria?",
+    opts: [
+      "Eu preciso conhecer essas chaves urgentemente para mudar minha história",
+      "Não aceito mais viver na ignorância e na escassez, quero a resposta",
+    ],
   },
   {
-    q: "Você teria coragem de investir 7 minutos do seu dia para aplicar esse protocolo?",
-    opts: ["Sim, farei o que for preciso para prosperar com fé!", "Estou disposto a seguir o Protocolo sem hesitar"],
+    q: "Se a revelação secreta para destravar a sua prosperidade exigir apenas 7 minutos do seu dia, você assume o compromisso sagrado?",
+    opts: [
+      "SIM! Eu faço o que for preciso, não aguento mais essa humilhação!",
+      "Estou pronto para seguir o protocolo com toda a força da minha fé",
+    ],
   },
   {
-    q: "O seu milagre está a um clique de distância. Você vai aceitar o seu destino?",
-    opts: ["SIM! QUERO QUEBRAR AS CORRENTES E PROSPERAR!", "NÃO POSSO MAIS VIVER NA HUMILHAÇÃO, EU ACEITO!"],
+    q: "A sua sentença de libertação está pronta. Você vai clicar para receber o Código de Salomão ou vai aceitar continuar na miséria?",
+    opts: [
+      "QUERO QUEBRAR A MALDIÇÃO E DESTRAVAR MINHA RIQUEZA AGORA! 👑",
+      "NÃO ACEITO MAIS A HUMILHAÇÃO, QUERO MINHA RESTAURAÇÃO! 💸",
+    ],
   },
 ];
 
 const LOADING_TEXTS = [
-  "Analisando respostas do perfil...",
-  "BLOQUEIO DE ESCASSEZ DETECTADO!",
-  "REDIRECIONANDO PARA A REVELAÇÃO...",
+  "PROCESSANDO SUA SENTENÇA...",
+  "MALDIÇÃO DE ESCASSEZ DETECTADA!",
+  "REDIRECIONANDO PARA A LIBERTAÇÃO FINANCEIRA...",
 ];
 
 function getStageText(idx: number) {
-  if (idx < 2) return { label: "Sondando Raízes Espirituais...", pct: 25 };
-  if (idx < 4) return { label: "Identificando Bloqueios de Salomão...", pct: 50 };
-  if (idx < 6) return { label: "Analisando Histórico de Escassez...", pct: 75 };
-  return { label: "PREPARANDO SUA REVELAÇÃO FINAL...", pct: 95 };
+  const steps = [
+    { label: "Sondando Raízes Espirituais...", pct: 25 },
+    { label: "Analisando Humilhações Diárias...", pct: 35 },
+    { label: "Avaliando Danos Familiares...", pct: 45 },
+    { label: "Mapeando Ciclo de Escassez Futura...", pct: 55 },
+    { label: "Rastreando Maldição Hereditária...", pct: 65 },
+    { label: "Verificando Falta de Conhecimento...", pct: 75 },
+    { label: "Avaliando Compromisso Sagrado...", pct: 85 },
+    { label: "PREPARANDO SUA SENTENÇA FINAL...", pct: 95 }
+  ];
+  return steps[idx] || { label: "PREPARANDO SUA SENTENÇA FINAL...", pct: 95 };
 }
 
 function QuizPage() {
@@ -116,23 +148,23 @@ function QuizPage() {
           <Crest />
           <h1
             className="mt-4 text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide"
-            style={{ fontFamily: "'Cormorant Garamond', serif", color: "#DAA520", textShadow: "0 1px 0 rgba(0,0,0,0.4)" }}
+            style={{ fontFamily: "'Cormorant Garamond', serif", color: "#FF4500", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}
           >
             AVALIAÇÃO SAGRADA DE PERFIL
           </h1>
-          <div className="mt-3 h-px w-32 bg-[#B8860B]/60" />
+          <div className="mt-3 h-[2px] w-32 bg-gradient-to-r from-transparent via-[#FF4500] to-transparent" />
         </div>
 
         {/* Progress */}
         <div className="mb-8">
           <p
-            className="text-center text-sm sm:text-base mb-2 tracking-wide"
-            style={{ fontFamily: "'EB Garamond', serif", color: "#F5F5DC" }}
+            className="text-center text-sm sm:text-base mb-2 tracking-wide font-medium"
+            style={{ fontFamily: "'EB Garamond', serif", color: "#FFF" }}
           >
             {stage.label}{" "}
-            <span style={{ color: "#DAA520" }}>(Nível: {stage.pct}%)</span>
+            <span style={{ color: "#FF4500" }}>(Nível: {stage.pct}%)</span>
           </p>
-          <div className="h-3 w-full rounded-full bg-black/60 border border-[#B8860B]/60 overflow-hidden">
+          <div className="h-3 w-full rounded-full bg-black/60 border border-[#FF4500]/40 overflow-hidden">
             <div
               className="h-full sacred-bar transition-all duration-700 ease-out"
               style={{ width: `${stage.pct}%` }}
@@ -146,11 +178,12 @@ function QuizPage() {
             <div className="loader-ring mb-8" />
             <p
               key={loadingStep}
-              className="text-center text-lg sm:text-xl fade-in tracking-wide"
+              className="text-center text-xl sm:text-2xl fade-in tracking-wide animate-pulse"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                color: loadingStep === 1 ? "#FFD700" : "#F5F5DC",
-                textShadow: "0 0 10px rgba(218,165,32,0.4)",
+                color: loadingStep === 1 ? "#FF3333" : loadingStep === 2 ? "#FF4500" : "#F5F5DC",
+                textShadow: "0 0 15px rgba(255, 69, 0, 0.7)",
+                fontWeight: "bold"
               }}
             >
               {LOADING_TEXTS[loadingStep]}
@@ -160,7 +193,7 @@ function QuizPage() {
           <div key={fadeKey} className="fade-in">
             <p
               className="text-center text-xl sm:text-2xl leading-snug mb-8"
-              style={{ fontFamily: "'EB Garamond', serif", color: "#F5F5DC" }}
+              style={{ fontFamily: "'EB Garamond', serif", color: "#FFF" }}
             >
               {current.q}
             </p>
@@ -178,7 +211,7 @@ function QuizPage() {
             </div>
             <p
               className="mt-8 text-center text-xs sm:text-sm italic"
-              style={{ fontFamily: "'EB Garamond', serif", color: "#C9B68A" }}
+              style={{ fontFamily: "'EB Garamond', serif", color: "#E0A9A9" }}
             >
               Pergunta {index + 1} de {QUESTIONS.length}
             </p>
@@ -193,33 +226,33 @@ function Crest() {
   return (
     <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
       <defs>
-        <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#F7E07A" />
-          <stop offset="50%" stopColor="#DAA520" />
-          <stop offset="100%" stopColor="#7A5A10" />
+        <linearGradient id="fire" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#FF8C00" />
+          <stop offset="50%" stopColor="#FF4500" />
+          <stop offset="100%" stopColor="#8B0000" />
         </linearGradient>
       </defs>
       {/* Crown */}
       <path
         d="M20 38 L30 22 L40 34 L50 18 L60 34 L70 22 L80 38 L75 50 L25 50 Z"
-        fill="url(#gold)"
-        stroke="#7A5A10"
+        fill="url(#fire)"
+        stroke="#8B0000"
         strokeWidth="1.2"
       />
-      <circle cx="30" cy="22" r="2.5" fill="#FFF3B0" stroke="#7A5A10" />
-      <circle cx="50" cy="18" r="3" fill="#FFF3B0" stroke="#7A5A10" />
-      <circle cx="70" cy="22" r="2.5" fill="#FFF3B0" stroke="#7A5A10" />
+      <circle cx="30" cy="22" r="2.5" fill="#FFD700" stroke="#8B0000" />
+      <circle cx="50" cy="18" r="3" fill="#FFD700" stroke="#8B0000" />
+      <circle cx="70" cy="22" r="2.5" fill="#FFD700" stroke="#8B0000" />
       {/* Crossed keys */}
-      <g stroke="url(#gold)" strokeWidth="3" strokeLinecap="round" fill="none">
+      <g stroke="url(#fire)" strokeWidth="3" strokeLinecap="round" fill="none">
         <line x1="30" y1="58" x2="72" y2="92" />
         <line x1="70" y1="58" x2="28" y2="92" />
       </g>
-      <circle cx="30" cy="58" r="5" fill="none" stroke="url(#gold)" strokeWidth="3" />
-      <circle cx="70" cy="58" r="5" fill="none" stroke="url(#gold)" strokeWidth="3" />
-      <rect x="69" y="88" width="6" height="3" fill="url(#gold)" />
-      <rect x="69" y="83" width="4" height="3" fill="url(#gold)" />
-      <rect x="25" y="88" width="6" height="3" fill="url(#gold)" />
-      <rect x="27" y="83" width="4" height="3" fill="url(#gold)" />
+      <circle cx="30" cy="58" r="5" fill="none" stroke="url(#fire)" strokeWidth="3" />
+      <circle cx="70" cy="58" r="5" fill="none" stroke="url(#fire)" strokeWidth="3" />
+      <rect x="69" y="88" width="6" height="3" fill="url(#fire)" />
+      <rect x="69" y="83" width="4" height="3" fill="url(#fire)" />
+      <rect x="25" y="88" width="6" height="3" fill="url(#fire)" />
+      <rect x="27" y="83" width="4" height="3" fill="url(#fire)" />
     </svg>
   );
 }
