@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const REDIRECT_URL = "[INSIRA_SEU_LINK_AQUI]";
+const REDIRECT_URL = "index.html";
 
 type Q = { q: string; opts: string[] };
 
@@ -105,8 +105,8 @@ function QuizPage() {
   useEffect(() => {
     if (!loading) return;
     const timeout = setTimeout(() => {
-      window.location.href = REDIRECT_URL;
-    }, 3000);
+      window.location.href = REDIRECT_URL; // Joga o fudido direto na página do Templo!
+    }, 2000); // Espera 2 segundos fingindo que tá calculando o resultado espiritual
     return () => clearTimeout(timeout);
   }, [loading]);
 

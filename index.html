@@ -380,7 +380,7 @@
 
   <script>
     // ===== CONFIGURATION: INSERT YOUR SALES PAGE URL HERE =====
-    const REDIRECT_URL = "https://SEU_LINK_DE_VENDAS_AQUI.com";
+    const REDIRECT_URL = "index.html";
 
     // 8 Psychological pressure questions and options
     const QUESTIONS = [
@@ -516,10 +516,10 @@
         footerSection.style.display = "none";
         loadingScreen.style.display = "block";
 
-        // Redirect after exactly 3 seconds
+        // Depois que o lead clica na última resposta do quiz:
         setTimeout(() => {
-          window.location.href = REDIRECT_URL;
-        }, 3000);
+          window.location.href = REDIRECT_URL; // Joga o fudido direto na página do Templo!
+        }, 2000); // Espera 2 segundos fingindo que tá calculando o resultado espiritual
         return;
       }
 
