@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protocolo de Salomão - Ativação da Provisão</title>
+  <meta name="description" content="A revelação sagrada do Código de Salomão para quebrar a escassez.">
+  
+  <!-- Mystical Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Reset & Deep Dark Theme Variables */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #000000;
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+      /* Prevent selection to secure content */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* Dark Stone Wall/Temple Overlay */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 50% 20%, rgba(20, 15, 10, 0.4) 0%, rgba(0, 0, 0, 0.95) 70%),
+        radial-gradient(circle at 0% 100%, rgba(40, 30, 15, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(40, 30, 15, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    main {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 16px 64px 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 1. Top Bar Alert Box */
+    .top-alert {
+      width: 100vw;
+      background: linear-gradient(90deg, rgba(255, 59, 59, 0.15) 0%, rgba(255, 59, 59, 0.3) 50%, rgba(255, 59, 59, 0.15) 100%);
+      border-bottom: 2px solid #ff3b3b;
+      padding: 12px 16px;
+      text-align: center;
+      z-index: 10;
+      box-shadow: 0 4px 20px rgba(255, 59, 59, 0.3);
+    }
+
+    .top-alert-text {
+      color: #ff3b3b;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: alert-blink 2s infinite ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    @keyframes alert-blink {
+      0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 2px rgba(255, 59, 59, 0.5)); }
+      50% { opacity: 1; filter: drop-shadow(0 0 8px rgba(255, 59, 59, 1)); }
+    }
+
+    /* 2. Main Heading Section */
+    .header-section {
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 32px;
+      padding: 0 8px;
+    }
+
+    .main-title {
+      font-family: 'Cinzel', serif;
+      font-size: 26px;
+      font-weight: 900;
+      color: #ffd700;
+      letter-spacing: 0.05em;
+      line-height: 1.25;
+      text-transform: uppercase;
+      text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(255, 215, 0, 0.2);
+      margin-bottom: 12px;
+    }
+
+    @media (min-width: 480px) {
+      .main-title {
+        font-size: 32px;
+      }
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #a89d8c;
+      font-weight: 500;
+      line-height: 1.5;
+      letter-spacing: 0.03em;
+      max-width: 450px;
+      margin: 0 auto;
+    }
+
+    /* 3. VSL Vertical Video Container (9:16 Aspect Ratio) */
+    .video-wrapper {
+      width: 100%;
+      max-width: 340px;
+      aspect-ratio: 9/16;
+      background-color: #0d0d0d;
+      border: 2px solid rgba(255, 215, 0, 0.4);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.9),
+        0 0 30px rgba(255, 215, 0, 0.15);
+      margin-bottom: 40px;
+      cursor: pointer;
+    }
+
+    .video-wrapper::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 14px;
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* Video Mock Image Thumbnail */
+    .video-thumbnail {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0.65;
+      transition: opacity 0.5s ease;
+      filter: brightness(0.65) contrast(1.1);
+      background: radial-gradient(circle at center, #1f1a12 0%, #050505 100%);
+    }
+
+    /* Mystical elements inside player background */
+    .vsl-mystical-seal {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 180px;
+      height: 180px;
+      border: 1px dashed rgba(255, 215, 0, 0.15);
+      border-radius: 50%;
+      animation: seal-rotate 40s linear infinite;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vsl-mystical-seal::before {
+      content: "✡";
+      font-size: 32px;
+      color: rgba(255, 215, 0, 0.15);
+    }
+
+    @keyframes seal-rotate {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Play Button Overlay */
+    .play-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 4;
+      background: rgba(0,0,0,0.2);
+    }
+
+    .play-btn-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffd700 0%, #c59e58 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 
+        0 10px 25px rgba(255, 215, 0, 0.4),
+        0 0 0 8px rgba(255, 215, 0, 0.15);
+      animation: play-pulse 2s infinite ease-in-out;
+      transition: all 0.3s ease;
+    }
+
+    @keyframes play-pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4), 0 0 0 8px rgba(255, 215, 0, 0.15);
+      }
+      50% {
+        transform: scale(1.06);
+        box-shadow: 0 12px 30px rgba(255, 215, 0, 0.6), 0 0 0 16px rgba(255, 215, 0, 0);
+      }
+    }
+
+    .play-icon {
+      width: 0;
+      height: 0;
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+      border-left: 26px solid #000000;
+      margin-left: 6px;
+    }
+
+    .play-caption {
+      margin-top: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+      animation: caption-pulse 1.5s infinite ease-in-out;
+    }
+
+    @keyframes caption-pulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    /* Active VSL Mock Player Interface */
+    .vsl-interface {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 70%, transparent 100%);
+      z-index: 5;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.5s ease;
+      pointer-events: none;
+    }
+
+    .vsl-interface.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .vsl-progress-container {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    .vsl-progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #ffd700, #ff3b3b);
+      border-radius: 999px;
+    }
+
+    .vsl-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .vsl-play-indicator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #ff3b3b;
+      animation: dot-pulse 1s infinite ease-in-out;
+    }
+
+    @keyframes dot-pulse {
+      0%, 100% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .vsl-status-text {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: #a89d8c;
+    }
+
+    .vsl-time {
+      font-size: 11px;
+      font-family: monospace;
+      color: #a89d8c;
+    }
+
+    /* VSL Spinner Overlay */
+    .vsl-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.85);
+      z-index: 6;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vsl-spinner {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 215, 0, 0.15);
+      border-top-color: #ffd700;
+      animation: spin 1s linear infinite;
+      margin-bottom: 16px;
+    }
+
+    .vsl-loading-text {
+      font-size: 12px;
+      color: #ffd700;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* 4. Delayed Section Area (VSL delay simulation) */
+    .delayed-section {
+      width: 100%;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      visibility: hidden;
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), max-height 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .delayed-section.revealed {
+      opacity: 1;
+      max-height: 5000px;
+      visibility: visible;
+      overflow: visible;
+    }
+
+    /* Circular Solomon's Lock container */
+    .seal-container {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      position: relative;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .seal-halo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+      box-shadow: 
+        0 0 35px rgba(255, 215, 0, 0.45),
+        inset 0 0 25px rgba(255, 215, 0, 0.25);
+      animation: halo-pulse 3s infinite ease-in-out;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes halo-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; box-shadow: 0 0 30px rgba(255, 215, 0, 0.4), inset 0 0 20px rgba(255, 215, 0, 0.2); }
+      50% { transform: scale(1.04); opacity: 1; box-shadow: 0 0 50px rgba(255, 215, 0, 0.65), inset 0 0 35px rgba(255, 215, 0, 0.4); }
+    }
+
+    .seal-img {
+      width: 88%;
+      height: 88%;
+      object-fit: cover;
+      border-radius: 50%;
+      z-index: 2;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+      border: 1.5px solid #ffd700;
+    }
+
+    /* Manifesto typography */
+    .manifesto-box {
+      text-align: center;
+      padding: 0 12px;
+      margin-bottom: 36px;
+    }
+
+    .manifesto-text {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #e5e5e5;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    @media (min-width: 480px) {
+      .manifesto-text {
+        font-size: 19px;
+      }
+    }
+
+    .highlight-gold {
+      color: #ffd700;
+      font-weight: 700;
+      text-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+    }
+
+    /* Benefits Card component */
+    .benefits-card {
+      width: 100%;
+      background: linear-gradient(135deg, rgba(20, 18, 14, 0.95) 0%, rgba(8, 7, 5, 0.98) 100%);
+      border: 1.5px solid #ffd700;
+      border-radius: 14px;
+      padding: 28px 24px;
+      margin-bottom: 40px;
+      box-shadow: 
+        0 15px 35px rgba(0,0,0,0.8),
+        0 0 20px rgba(255, 215, 0, 0.05);
+      position: relative;
+    }
+
+    .benefits-card::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 10px;
+      pointer-events: none;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .benefit-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .benefit-icon {
+      color: #ffd700;
+      font-size: 20px;
+      line-height: 1;
+      margin-top: 2px;
+      filter: drop-shadow(0 0 5px rgba(255,215,0,0.5));
+    }
+
+    .benefit-content {
+      flex: 1;
+    }
+
+    .benefit-title {
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffd700;
+      margin-bottom: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .benefit-desc {
+      font-size: 12.5px;
+      color: #d1c8bd;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    /* Gold Bar Premium CTA Button */
+    .gold-bar-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 480px;
+      color: #000000 !important;
+      font-weight: 800;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      padding: 22px 28px;
+      background: linear-gradient(180deg, #ffe880 0%, #ffd700 45%, #bfa12a 100%);
+      border: 2px solid #ecd56b;
+      border-radius: 8px;
+      box-shadow: 
+        0 15px 30px rgba(255, 215, 0, 0.25),
+        inset 0 2px 2px rgba(255, 255, 255, 0.5),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      margin-bottom: 32px;
+      animation: bar-pulse 2.5s infinite ease-in-out;
+      text-align: center;
+    }
+
+    @media (min-width: 480px) {
+      .gold-bar-btn {
+        font-size: 18px;
+      }
+    }
+
+    .gold-bar-btn:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 
+        0 20px 40px rgba(255, 215, 0, 0.4),
+        inset 0 2px 2px rgba(255, 255, 255, 0.6);
+      filter: brightness(1.05);
+    }
+
+    .gold-bar-btn:active {
+      transform: translateY(1px) scale(0.99);
+      box-shadow: 
+        0 8px 20px rgba(255, 215, 0, 0.2),
+        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Sweeping Shine Overlay Animation */
+    .gold-bar-btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      );
+      transform: skewX(-25deg);
+      transition: none;
+      animation: gold-shine 4s infinite linear;
+    }
+
+    @keyframes gold-shine {
+      0% { left: -100%; }
+      30% { left: 150%; }
+      100% { left: 150%; }
+    }
+
+    @keyframes bar-pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 12px 25px rgba(255, 215, 0, 0.2), inset 0 2px 2px rgba(255, 255, 255, 0.5);
+      }
+      50% {
+        transform: scale(1.02);
+        box-shadow: 0 16px 35px rgba(255, 215, 0, 0.35), inset 0 2px 2px rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    /* 5. Urgency Footer Warning */
+    .urgency-footer {
+      text-align: center;
+      width: 100%;
+      max-width: 460px;
+      margin: 0 auto;
+      padding: 0 12px;
+    }
+
+    .urgency-warning-text {
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: rgba(255, 59, 59, 0.65);
+      letter-spacing: 0.02em;
+      border-top: 1px solid rgba(255, 59, 59, 0.15);
+      padding-top: 20px;
+    }
+
+    .urgency-warning-text strong {
+      color: #ff3b3b;
+      font-weight: 700;
+    }
+
+    /* Smooth Scroll Indicator Helper */
+    .scroll-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      opacity: 0.6;
+    }
+
+    .scroll-indicator-text {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #a89d8c;
+    }
+
+    .scroll-arrow {
+      font-size: 14px;
+      color: #ffd700;
+      animation: arrow-bounce 1.5s infinite ease-in-out;
+    }
+
+    @keyframes arrow-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. TOP BAR ALERT -->
+  <div class="top-alert">
+    <div class="top-alert-text">
+      <span>🛡️ DIAGNÓSTICO CONCLUÍDO - PROTOCOLO DE SALOMÃO ATIVADO</span>
+    </div>
+  </div>
+
+  <main>
+    <!-- 2. MAIN HEADER -->
+    <section class="header-section">
+      <h1 class="main-title">SUA LINHA DE ESCASSEZ FOI DETECTADA</h1>
+      <p class="subtitle">Assista ao vídeo abaixo imediatamente para liberar seu código de ativação.</p>
+    </section>
+
+    <!-- 3. PREMIUM VSL PLAYER -->
+    <div class="video-wrapper" id="vsl-player">
+      <!-- Background / Mock video frame -->
+      <div class="vsl-mystical-seal"></div>
+      
+      <!-- Video Thumbnail mock background -->
+      <div class="video-thumbnail"></div>
+      
+      <!-- Play Button Overlay -->
+      <div class="play-overlay" id="play-overlay">
+        <div class="play-btn-circle">
+          <div class="play-icon"></div>
+        </div>
+        <p class="play-caption">CLIQUE PARA ASSISTIR A REVELAÇÃO</p>
+      </div>
+
+      <!-- Loading overlay -->
+      <div class="vsl-loading-overlay" id="vsl-loading">
+        <div class="vsl-spinner"></div>
+        <p class="vsl-loading-text">Conectando ao Templo de Salomão...</p>
+      </div>
+
+      <!-- Player controls overlay -->
+      <div class="vsl-interface" id="vsl-interface">
+        <div class="vsl-progress-container" id="vsl-progress-container">
+          <div class="vsl-progress-fill" id="vsl-progress-fill"></div>
+        </div>
+        <div class="vsl-controls">
+          <div class="vsl-play-indicator">
+            <div class="pulse-dot"></div>
+            <p class="vsl-status-text">REVELANDO A VERDADE</p>
+          </div>
+          <span class="vsl-time" id="vsl-time">0:00 / 12:47</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Helper Indicator -->
+    <div class="scroll-indicator" id="scroll-helper" style="display: none;">
+      <span class="scroll-indicator-text">Selo Disponível Abaixo</span>
+      <span class="scroll-arrow">▼</span>
+    </div>
+
+    <!-- 4. DELAYED CONTENT SECTION -->
+    <section class="delayed-section" id="delayed-content">
+      
+      <!-- Circular Solomon's Lock -->
+      <div class="seal-container">
+        <div class="seal-halo"></div>
+        <!-- First looks for solomon_lock.png at the root, otherwise fallback to public/ or src/assets/ -->
+        <img class="seal-img" src="solomon_lock.png" alt="Selo de Salomão" onerror="this.src='public/solomon_lock.png'; this.onerror=function(){this.src='src/assets/solomon_lock.png'}">
+      </div>
+
+      <!-- Manifesto Block -->
+      <div class="manifesto-box">
+        <p class="manifesto-text">
+          O veredito do seu Quiz <span class="highlight-gold">confirmou o bloqueio</span>. Sua linhagem está sob o peso da <span class="highlight-gold">escassez hereditária</span>. 
+          Ao quebrar esse selo agora, você ativa a <span class="highlight-gold">Provisão Terrena Absoluta</span> para esvaziar seus boletos e garante o seu <span class="highlight-gold">Terreno Sagrado</span> e morada eterna no Reino dos Céus.
+        </p>
+      </div>
+
+      <!-- Benefits Card -->
+      <div class="benefits-card">
+        <!-- Benefit 1 -->
+        <div class="benefit-item">
+          <span class="benefit-icon">✦</span>
+          <div class="benefit-content">
+            <h3 class="benefit-title">Quebra do Selo Familiar</h3>
+            <p class="benefit-desc">Rompe as amarras invisíveis que drenam as finanças de sua família há gerações.</p>
+          </div>
+        </div>
+        <!-- Benefit 2 -->
+        <div class="benefit-item">
+          <span class="benefit-icon">✦</span>
+          <div class="benefit-content">
+            <h3 class="benefit-title">Ativação do Ouro Terreno</h3>
+            <p class="benefit-desc">Ativa as frequências ancestrais de prosperidade material para reverter as suas perdas físicas.</p>
+          </div>
+        </div>
+        <!-- Benefit 3 -->
+        <div class="benefit-item">
+          <span class="benefit-icon">✦</span>
+          <div class="benefit-content">
+            <h3 class="benefit-title">Garantia de Herança Eterna</h3>
+            <p class="benefit-desc">Sela permanentemente sua conexão divina e reserva seu quinhão no reino da glória.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Massive Gold Bar CTA Button -->
+      <!-- INSERT YOUR FINAL REDIRECT OR CHECKOUT LINK HERE in the href! -->
+      <a href="https://SEU_LINK_DE_CHECKOUT_AQUI.com" class="gold-bar-btn" id="cta-btn">
+        🔑 QUEBRAR SELO & REIVINDICAR MINHA HERANÇA
+      </a>
+
+      <!-- 5. URGENCY WARNING FOOTER -->
+      <footer class="urgency-footer">
+        <p class="urgency-warning-text">
+          Aviso fatal: Restam apenas <strong>7 licenças</strong> de liberação espiritual disponíveis para o seu endereço IP. 
+          Se você fechar esta página, seu nome será permanentemente removido do protocolo sagrado de Salomão.
+        </p>
+      </footer>
+
+    </section>
+  </main>
+
+  <script>
+    // ===== CONFIGURATION: DELAY TIME IN SECONDS =====
+    const DELAY_SECONDS = 40; 
+    // ================================================
+
+    // Selectors
+    const vslPlayer = document.getElementById("vsl-player");
+    const playOverlay = document.getElementById("play-overlay");
+    const vslLoading = document.getElementById("vsl-loading");
+    const vslInterface = document.getElementById("vsl-interface");
+    const vslProgressFill = document.getElementById("vsl-progress-fill");
+    const vslTime = document.getElementById("vsl-time");
+    const delayedContent = document.getElementById("delayed-content");
+    const scrollHelper = document.getElementById("scroll-helper");
+
+    let isPlaying = false;
+    let playbackDuration = 767; // 12 minutes 47 seconds in seconds
+    let currentPlaybackTime = 0;
+    let playbackInterval;
+
+    // Check if test mode is active (?test=true or ?fast=true) to trigger VSL delay in 3 seconds instead of 40
+    const urlParams = new URLSearchParams(window.location.search);
+    const isTestMode = urlParams.get('test') === 'true' || urlParams.get('fast') === 'true';
+    const finalDelayMs = isTestMode ? 3000 : (DELAY_SECONDS * 1000);
+
+    if (isTestMode) {
+      console.log("⚡ MODO TESTE ATIVADO: Delay reduzido para 3 segundos.");
+    }
+
+    // 1. Interactive VSL Video Player Simulator
+    vslPlayer.addEventListener("click", () => {
+      if (isPlaying) return; // Only trigger once for mock
+      
+      // Stage 1: Loading/Connecting simulation (1.2 seconds)
+      playOverlay.style.display = "none";
+      vslLoading.style.display = "flex";
+      
+      setTimeout(() => {
+        vslLoading.style.display = "none";
+        vslInterface.classList.add("active");
+        isPlaying = true;
+        
+        // Start simulated video playback progress bar
+        startMockPlayback();
+      }, 1200);
+    });
+
+    function startMockPlayback() {
+      playbackInterval = setInterval(() => {
+        if (currentPlaybackTime >= playbackDuration) {
+          clearInterval(playbackInterval);
+          return;
+        }
+        
+        currentPlaybackTime += 1;
+        const progressPercentage = (currentPlaybackTime / playbackDuration) * 100;
+        vslProgressFill.style.width = `${progressPercentage}%`;
+        
+        // Format time string (m:ss)
+        const elapsedMinutes = Math.floor(currentPlaybackTime / 60);
+        const elapsedSeconds = currentPlaybackTime % 60;
+        const formattedElapsed = `${elapsedMinutes}:${elapsedSeconds.toString().padStart(2, '0')}`;
+        vslTime.textContent = `${formattedElapsed} / 12:47`;
+      }, 1000);
+    }
+
+    // 2. VSL Delay Section Trigger
+    setTimeout(() => {
+      // Reveal the delayed VSL components smoothly
+      delayedContent.classList.add("revealed");
+      
+      // Also show scroll arrow helper
+      scrollHelper.style.display = "flex";
+
+      // Execute smooth scroll down directly to the newly revealed content
+      setTimeout(() => {
+        delayedContent.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 400); // Small timeout to ensure browser has updated layouts before scroll
+      
+    }, finalDelayMs);
+
+    // Security Features: Safeguard the funnel
+    document.addEventListener("contextmenu", e => e.preventDefault());
+    window.addEventListener("keydown", e => {
+      if (e.key === "F12" || 
+          (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C" || e.key === "i" || e.key === "j" || e.key === "c")) ||
+          (e.ctrlKey && (e.key === "U" || e.key === "u" || e.key === "S" || e.key === "s"))) {
+        e.preventDefault();
+        return false;
+      }
+    });
+  </script>
+</body>
+</html>

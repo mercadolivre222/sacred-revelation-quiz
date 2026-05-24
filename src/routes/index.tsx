@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const REDIRECT_URL = "index.html";
+const REDIRECT_URL = "/templo";
 
 type Q = { q: string; opts: string[] };
 
