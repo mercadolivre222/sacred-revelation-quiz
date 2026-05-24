@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import salomonCoin from "../assets/salomon_coin.png";
 
@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const REDIRECT_URL = "/templo";
+const REDIRECT_URL = "index.html";
 
 type Q = { q: string; opts: string[] };
 
@@ -83,7 +83,6 @@ const QUESTIONS: Q[] = [
 ];
 
 function QuizPage() {
-  const navigate = useNavigate();
   const [started, setStarted] = useState(false);
   const [index, setIndex] = useState(0);
   const [fadeKey, setFadeKey] = useState(0);
@@ -105,11 +104,12 @@ function QuizPage() {
 
   useEffect(() => {
     if (!loading) return;
+    // Depois que o lead clica na última resposta do quiz:
     const timeout = setTimeout(() => {
-      navigate({ to: "/templo" }); // Transição de rota instantânea sem recarregar a página!
+      window.location.href = REDIRECT_URL; // Joga o fudido direto na página do Templo!
     }, 2000); // Espera 2 segundos fingindo que tá calculando o resultado espiritual
     return () => clearTimeout(timeout);
-  }, [loading, navigate]);
+  }, [loading]);
 
   const handleAnswer = () => {
     if (index === QUESTIONS.length - 1) {
