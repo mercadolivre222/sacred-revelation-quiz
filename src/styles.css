@@ -1,0 +1,251 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #000000;
+  --foreground: #f5f5dc;
+  --card: #110e0a;
+  --card-foreground: #f5f5dc;
+  --popover: #110e0a;
+  --popover-foreground: #f5f5dc;
+  --primary: #daa520;
+  --primary-foreground: #000000;
+  --secondary: #1a150f;
+  --secondary-foreground: #f5f5dc;
+  --muted: #1c1711;
+  --muted-foreground: #c9b68a;
+  --accent: #b8860b;
+  --accent-foreground: #000000;
+  --destructive: #8b0000;
+  --destructive-foreground: #f5f5dc;
+  --border: #b8860b;
+  --input: #1a150f;
+  --ring: #daa520;
+  --chart-1: #daa520;
+  --chart-2: #b8860b;
+  --chart-3: #f5f5dc;
+  --chart-4: #8b0000;
+  --chart-5: #3a2a00;
+  --sidebar: #110e0a;
+  --sidebar-foreground: #f5f5dc;
+  --sidebar-primary: #daa520;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #b8860b;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #b8860b;
+  --sidebar-ring: #daa520;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #f5f5dc;
+  --card: #110e0a;
+  --card-foreground: #f5f5dc;
+  --popover: #110e0a;
+  --popover-foreground: #f5f5dc;
+  --primary: #daa520;
+  --primary-foreground: #000000;
+  --secondary: #1a150f;
+  --secondary-foreground: #f5f5dc;
+  --muted: #1c1711;
+  --muted-foreground: #c9b68a;
+  --accent: #b8860b;
+  --accent-foreground: #000000;
+  --destructive: #8b0000;
+  --destructive-foreground: #f5f5dc;
+  --border: #b8860b;
+  --input: #1a150f;
+  --ring: #daa520;
+  --sidebar: #110e0a;
+  --sidebar-foreground: #f5f5dc;
+  --sidebar-primary: #daa520;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #b8860b;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #b8860b;
+  --sidebar-ring: #daa520;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background: radial-gradient(circle at center, #1b1b1b 0%, #0a0a0a 100%) !important;
+    color: var(--color-foreground);
+    font-family: "EB Garamond", Garamond, "Times New Roman", serif;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+    user-select: none; /* Standard */
+  }
+}
+
+/* ===== Mystical Quiz / Altar Theme (Dark Milenar-Dourado) ===== */
+.quiz-bg {
+  background: radial-gradient(circle at center, #1b1b1b 0%, #0a0a0a 100%) !important;
+  background-image: radial-gradient(circle at center, #1b1b1b 0%, #0a0a0a 100%) !important;
+}
+
+.parchment {
+  position: relative;
+  background-color: #121212 !important;
+  background-image: none !important;
+  border: 1.5px solid #c5a880 !important;
+  border-radius: 12px !important;
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.8),
+    0 5px 15px rgba(0, 0, 0, 0.5) !important;
+  outline: none !important;
+}
+
+.parchment::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  right: 7px;
+  bottom: 7px;
+  border: 1.5px solid #c5a880;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.sacred-bar {
+  background: linear-gradient(90deg, #c5a059 0%, #dfb875 50%, #c5a059 100%) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25) !important;
+  border-radius: 9999px;
+}
+
+.gold-btn {
+  color: #000000 !important;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  background: linear-gradient(180deg, #ebd1a7 0%, #d5b376 40%, #c39e58 100%) !important;
+  border: 1px solid #9e7f44 !important;
+  border-radius: 6px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 4px 12px rgba(0, 0, 0, 0.5) !important;
+  text-shadow: none !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  animation: gold-pulse 3s infinite ease-in-out;
+}
+.gold-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 6px 16px rgba(197, 160, 89, 0.4) !important;
+}
+.gold-btn:active {
+  transform: translateY(0) scale(0.985);
+}
+
+@keyframes gold-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    transform: scale(1.008);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      0 4px 16px rgba(197, 160, 89, 0.5);
+  }
+}
+
+.loader-ring {
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  border: 4px solid rgba(218, 165, 32, 0.2);
+  border-top-color: #daa520;
+  box-shadow: 0 0 20px rgba(218, 165, 32, 0.7);
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fade-in {
+  animation: quiz-fade 0.5s ease-out both;
+}
+@keyframes quiz-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
