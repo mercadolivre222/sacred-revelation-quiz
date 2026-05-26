@@ -731,14 +731,7 @@
         e.preventDefault();
       });
 
-      // 5. Anti-debugger freeze loop
-      setInterval(() => {
-        (function () {
-          (function a() {
-            debugger;
-          })();
-        })();
-      }, 200);
+
     </script>
   </body>
 </html>
