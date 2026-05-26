@@ -388,6 +388,10 @@
         <!-- 3. LOADING / REDIRECTION SCREEN -->
         <div id="loading-screen" style="display: none">
           <div class="loading-container">
+            <div
+              id="loading-icon-container"
+              style="display: flex; justify-content: center; margin-bottom: 24px"
+            ></div>
             <p
               class="warning-title"
               style="
@@ -420,7 +424,20 @@
             >
               0%
             </p>
-            <p class="loading-text" style="font-size: 18px">
+            <p
+              id="loading-status-text"
+              class="loading-text"
+              style="
+                font-size: 18px;
+                font-weight: bold;
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                transition: all 0.3s;
+                text-align: center;
+                max-width: 450px;
+                line-height: 1.5;
+                padding: 0 16px;
+              "
+            >
               Conectando com o Código de Salomão...
             </p>
           </div>
@@ -579,6 +596,58 @@
           let progressVal = 0;
           const progressFillLoading = document.getElementById("loading-progress-fill");
           const progressTextLoading = document.getElementById("loading-progress-text");
+          const loadingText = document.getElementById("loading-status-text");
+          const iconContainer = document.getElementById("loading-icon-container");
+
+          function getMysticalLoadingText(p) {
+            if (p < 25) return "Sondando bloqueios espirituais hereditários...";
+            if (p < 55) return "⚠️ MALDIÇÃO DA ESCASSEZ DETECTADA NO SEU NOME!";
+            if (p < 80) return "🔥 Rompendo amarras de escassez e humilhação...";
+            return "👑 Desbloqueando o Código de Salomão e liberando prosperidade...";
+          }
+
+          function getTextColor(p) {
+            if (p < 25) return "#c5a880";
+            if (p < 55) return "#ff4d4d";
+            if (p < 80) return "#ff8c00";
+            return "#dfb875";
+          }
+
+          function getTextShadow(p) {
+            if (p < 25) return "0 0 15px rgba(197, 168, 128, 0.5)";
+            if (p < 55) return "0 0 25px rgba(255, 77, 77, 0.9)";
+            if (p < 80) return "0 0 25px rgba(255, 140, 0, 0.9)";
+            return "0 0 30px rgba(223, 184, 117, 1)";
+          }
+
+          function updatePadlock(p) {
+            if (p < 80) {
+              iconContainer.innerHTML = `
+                <svg class="mystical-padlock" width="64" height="64" fill="none" stroke="#e63946" stroke-width="1.5" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 12px rgba(230, 57, 70, 0.8)); animation: gold-pulse 1.5s infinite ease-in-out;">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              `;
+            } else {
+              iconContainer.innerHTML = `
+                <svg class="mystical-padlock" width="64" height="64" fill="none" stroke="#dfb875" stroke-width="1.5" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 15px rgba(223, 184, 117, 0.8)); animation: bounce 1s infinite;">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                </svg>
+              `;
+            }
+          }
+
+          // Add CSS keyframe animation for bounce if not present
+          if (!document.getElementById("mystical-loading-styles")) {
+            const style = document.createElement("style");
+            style.id = "mystical-loading-styles";
+            style.innerHTML = `
+              @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-8px); }
+              }
+            `;
+            document.head.appendChild(style);
+          }
 
           const interval = setInterval(() => {
             progressVal++;
@@ -588,11 +657,19 @@
             if (progressTextLoading) {
               progressTextLoading.textContent = progressVal + "%";
             }
+            if (loadingText) {
+              loadingText.textContent = getMysticalLoadingText(progressVal);
+              loadingText.style.color = getTextColor(progressVal);
+              loadingText.style.textShadow = getTextShadow(progressVal);
+            }
+            if (iconContainer) {
+              updatePadlock(progressVal);
+            }
             if (progressVal >= 100) {
               clearInterval(interval);
               window.location.href = REDIRECT_URL;
             }
-          }, 30); // 30ms * 100 = 3000ms (3 segundos)
+          }, 35); // 35ms * 100 = 3500ms (3.5 segundos)
           return;
         }
 

@@ -114,7 +114,7 @@ function QuizPage() {
         }
         return prev + 1;
       });
-    }, 30); // 30ms * 100 = 3000ms (3 segundos)
+    }, 35); // 35ms * 100 = 3500ms (3.5 segundos) - dá um pouco mais de tempo para sentir a emoção!
     return () => clearInterval(interval);
   }, [loading]);
 
@@ -125,6 +125,65 @@ function QuizPage() {
     }
     setIndex((i) => i + 1);
     setFadeKey((k) => k + 1);
+  };
+
+  const getMysticalLoadingText = (p: number) => {
+    if (p < 25) return "Sondando bloqueios espirituais hereditários...";
+    if (p < 55) return "⚠️ MALDIÇÃO DA ESCASSEZ DETECTADA NO SEU NOME!";
+    if (p < 80) return "🔥 Rompendo amarras de escassez e humilhação...";
+    return "👑 Desbloqueando o Código de Salomão e liberando prosperidade...";
+  };
+
+  const getTextColor = (p: number) => {
+    if (p < 25) return "#c5a880";
+    if (p < 55) return "#ff4d4d";
+    if (p < 80) return "#ff8c00";
+    return "#dfb875";
+  };
+
+  const getTextShadow = (p: number) => {
+    if (p < 25) return "0 0 15px rgba(197, 168, 128, 0.5)";
+    if (p < 55) return "0 0 25px rgba(255, 77, 77, 0.9)";
+    if (p < 80) return "0 0 25px rgba(255, 140, 0, 0.9)";
+    return "0 0 30px rgba(223, 184, 117, 1)";
+  };
+
+  const getPadlockIcon = (p: number) => {
+    if (p < 80) {
+      return (
+        <svg
+          className="w-16 h-16 text-[#e63946] animate-pulse mb-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          style={{ filter: "drop-shadow(0 0 12px rgba(230, 57, 70, 0.8))" }}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.5"
+            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+          />
+        </svg>
+      );
+    } else {
+      return (
+        <svg
+          className="w-16 h-16 text-[#dfb875] animate-bounce mb-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          style={{ filter: "drop-shadow(0 0 15px rgba(223, 184, 117, 0.8))" }}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.5"
+            d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
+          />
+        </svg>
+      );
+    }
   };
 
   const current = QUESTIONS[index];
@@ -157,7 +216,7 @@ function QuizPage() {
             style={{ fontFamily: "'EB Garamond', serif", color: "#F5F5DC" }}
           >
             Desvende as chaves secretas de Salomão para quebrar a maldição financeira hereditária e
-            destravar a sua prosperidade. A avaliação das suas raízes espirituais começará a seguir.
+            destravar a sua prosperidade. A avaliação das suas raíces espirituais começará a seguir.
           </p>
 
           <div className="flex justify-center">
@@ -215,6 +274,7 @@ function QuizPage() {
         {/* LOADING SCREEN */}
         <div style={{ display: loading ? "block" : "none" }}>
           <div className="flex flex-col items-center justify-center py-12 min-h-[300px]">
+            {getPadlockIcon(progress)}
             <h2
               className="text-center text-2xl sm:text-3xl tracking-wide uppercase mb-6"
               style={{
@@ -240,15 +300,15 @@ function QuizPage() {
               {progress}%
             </p>
             <p
-              className="text-center text-lg sm:text-xl tracking-wide animate-pulse"
+              className="text-center text-lg sm:text-xl tracking-wide px-4 leading-relaxed transition-all duration-300"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                color: "#c5a880",
-                textShadow: "0 0 15px rgba(197, 168, 128, 0.5)",
+                color: getTextColor(progress),
+                textShadow: getTextShadow(progress),
                 fontWeight: "bold",
               }}
             >
-              Conectando com o Código de Salomão...
+              {getMysticalLoadingText(progress)}
             </p>
           </div>
         </div>
