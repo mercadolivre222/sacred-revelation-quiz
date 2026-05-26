@@ -1,586 +1,667 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Sondagem da Esfera de Escassez</title>
-  <meta name="description" content="Uma sondagem profunda da esfera de escassez e abundância de Salomão.">
-  <meta name="author" content="Antigravity">
-  
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="A Sondagem da Esfera de Escassez">
-  <meta property="og:description" content="Uma sondagem profunda da esfera de escassez e abundância de Salomão.">
-  <meta property="og:type" content="website">
-  
-  <!-- Mystical Google Fonts Import -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <style>
-    /* Reset & Mystical Theme Definitions */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Sondagem da Esfera de Escassez</title>
+    <meta
+      name="description"
+      content="Uma sondagem profunda da esfera de escassez e abundância de Salomão."
+    />
+    <meta name="author" content="Antigravity" />
 
-    body {
-      background: radial-gradient(circle at center, #1b1b1b 0%, #0a0a0a 100%) !important;
-      color: #f5f5dc;
-      font-family: "EB Garamond", Garamond, "Times New Roman", serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: flex-col;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 16px;
-      overflow-x: hidden;
-      
-      /* Global copy-protection selection block */
-      -webkit-user-select: none; /* Safari */
-      -moz-user-select: none;    /* Firefox */
-      -ms-user-select: none;     /* IE/Edge */
-      user-select: none;         /* Standard */
-    }
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="A Sondagem da Esfera de Escassez" />
+    <meta
+      property="og:description"
+      content="Uma sondagem profunda da esfera de escassez e abundância de Salomão."
+    />
+    <meta property="og:type" content="website" />
 
-    main {
-      width: 100%;
-      max-width: 650px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    <!-- Mystical Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=EB+Garamond:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-    /* Central Parchment Card (Double Gold Border) */
-    .parchment {
-      position: relative;
-      width: 100%;
-      background-color: #121212;
-      border: 1.5px solid #c5a880;
-      border-radius: 12px;
-      padding: 40px 24px;
-      margin-bottom: 24px;
-      box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.8),
-        0 5px 15px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Elegant nested double border */
-    .parchment::after {
-      content: "";
-      position: absolute;
-      top: 7px;
-      left: 7px;
-      right: 7px;
-      bottom: 7px;
-      border: 1.5px solid #c5a880;
-      border-radius: 8px;
-      pointer-events: none;
-    }
-
-    /* Medallion Header Styling */
-    .crest-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-
-    .crest-img {
-      width: 96px;
-      height: 96px;
-      object-fit: contain;
-      border-radius: 50%;
-      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.6));
-    }
-
-    .main-title {
-      margin-top: 16px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      font-family: 'Cormorant Garamond', serif;
-      color: #c5a880;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-    }
-
-    @media (min-width: 480px) {
-      .main-title {
-        font-size: 32px;
+    <style>
+      /* Reset & Mystical Theme Definitions */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
+
+      body {
+        background: radial-gradient(circle at center, #1b1b1b 0%, #0a0a0a 100%) !important;
+        color: #f5f5dc;
+        font-family: "EB Garamond", Garamond, "Times New Roman", serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: flex-col;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 16px;
+        overflow-x: hidden;
+
+        /* Global copy-protection selection block */
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE/Edge */
+        user-select: none; /* Standard */
+      }
+
+      main {
+        width: 100%;
+        max-width: 650px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Central Parchment Card (Double Gold Border) */
       .parchment {
-        padding: 56px 48px;
+        position: relative;
+        width: 100%;
+        background-color: #121212;
+        border: 1.5px solid #c5a880;
+        border-radius: 12px;
+        padding: 40px 24px;
+        margin-bottom: 24px;
+        box-shadow:
+          0 15px 35px rgba(0, 0, 0, 0.8),
+          0 5px 15px rgba(0, 0, 0, 0.5);
       }
-    }
 
-    .title-separator {
-      margin-top: 12px;
-      height: 2px;
-      width: 128px;
-      background: linear-gradient(90deg, transparent, #c5a880, transparent);
-    }
-
-    /* Welcome / Introduction Copy */
-    .intro-text {
-      text-align: center;
-      font-size: 18px;
-      line-height: 1.6;
-      color: #F5F5DC;
-      margin-bottom: 32px;
-      font-family: 'EB Garamond', serif;
-    }
-
-    /* Shiny Pulsing Gold Buttons */
-    .gold-btn {
-      display: block;
-      width: 100%;
-      color: #000000 !important;
-      font-weight: 700;
-      font-size: 18px;
-      text-align: center;
-      text-decoration: none;
-      padding: 16px 20px;
-      background: linear-gradient(180deg, #ebd1a7 0%, #d5b376 40%, #c39e58 100%) !important;
-      border: 1px solid #9e7f44 !important;
-      border-radius: 6px !important;
-      box-shadow: 
-        inset 0 1px 0 rgba(255, 255, 255, 0.35),
-        0 4px 12px rgba(0, 0, 0, 0.5) !important;
-      font-family: 'EB Garamond', serif;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      animation: gold-pulse 3s infinite ease-in-out;
-    }
-
-    .gold-btn:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.08);
-      box-shadow: 
-        inset 0 1px 0 rgba(255, 255, 255, 0.4),
-        0 6px 16px rgba(197, 160, 89, 0.4) !important;
-    }
-
-    .gold-btn:active {
-      transform: translateY(0) scale(0.985);
-    }
-
-    @keyframes gold-pulse {
-      0%, 100% {
-        transform: scale(1);
-        box-shadow: 
-          inset 0 1px 0 rgba(255, 255, 255, 0.35),
-          0 4px 12px rgba(0, 0, 0, 0.5);
+      /* Elegant nested double border */
+      .parchment::after {
+        content: "";
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        right: 7px;
+        bottom: 7px;
+        border: 1.5px solid #c5a880;
+        border-radius: 8px;
+        pointer-events: none;
       }
-      50% {
-        transform: scale(1.008);
-        box-shadow: 
-          inset 0 1px 0 rgba(255, 255, 255, 0.4),
-          0 4px 16px rgba(197, 160, 89, 0.5);
+
+      /* Medallion Header Styling */
+      .crest-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 24px;
       }
-    }
 
-    /* Option styling gaps */
-    .options-container {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+      .crest-img {
+        width: 96px;
+        height: 96px;
+        object-fit: contain;
+        border-radius: 50%;
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
+      }
 
-    /* Golden Progress Bar */
-    .progress-section {
-      margin-bottom: 32px;
-    }
-
-    .progress-label {
-      text-align: center;
-      font-size: 14px;
-      letter-spacing: 0.05em;
-      color: #a89d8c;
-      margin-bottom: 8px;
-    }
-
-    .progress-bar-bg {
-      height: 12px;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      border: 1px solid rgba(74, 60, 44, 0.8);
-      border-radius: 9999px;
-      overflow: hidden;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      width: 12.5%;
-      background: linear-gradient(90deg, #c5a059 0%, #dfb875 50%, #c5a059 100%) !important;
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25) !important;
-      border-radius: 9999px;
-      transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Question Copy Layout */
-    .question-text {
-      text-align: center;
-      font-size: 20px;
-      line-height: 1.5;
-      color: #FFFFFF;
-      margin-bottom: 32px;
-      font-family: 'EB Garamond', serif;
-    }
-
-    @media (min-width: 480px) {
-      .question-text {
+      .main-title {
+        margin-top: 16px;
+        text-align: center;
         font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        font-family: "Cormorant Garamond", serif;
+        color: #c5a880;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
       }
-    }
 
-    /* Loading Screen Spinner */
-    .loader-ring {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      border: 4px solid rgba(218, 165, 32, 0.2);
-      border-top-color: #daa520;
-      box-shadow: 0 0 20px rgba(218, 165, 32, 0.7);
-      animation: spin 1s linear infinite;
-      margin-bottom: 32px;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .loading-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 0;
-      min-height: 300px;
-    }
-
-    .loading-text {
-      text-align: center;
-      font-size: 20px;
-      font-weight: 700;
-      font-family: 'Cormorant Garamond', serif;
-      color: #c5a880;
-      text-shadow: 0 0 15px rgba(197, 168, 128, 0.5);
-      animation: pulse 1.5s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-
-    /* Fade-in Transition Animation */
-    .fade-in {
-      animation: quiz-fade 0.5s ease-out both;
-    }
-
-    @keyframes quiz-fade {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
+      @media (min-width: 480px) {
+        .main-title {
+          font-size: 32px;
+        }
+        .parchment {
+          padding: 56px 48px;
+        }
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+
+      .title-separator {
+        margin-top: 12px;
+        height: 2px;
+        width: 128px;
+        background: linear-gradient(90deg, transparent, #c5a880, transparent);
       }
-    }
 
-    /* Outer Footer Navigation */
-    .footer-container {
-      position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+      /* Welcome / Introduction Copy */
+      .intro-text {
+        text-align: center;
+        font-size: 18px;
+        line-height: 1.6;
+        color: #f5f5dc;
+        margin-bottom: 32px;
+        font-family: "EB Garamond", serif;
+      }
 
-    .footer-counter {
-      font-family: 'EB Garamond', serif;
-      color: #9e9382;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-    }
+      /* Shiny Pulsing Gold Buttons */
+      .gold-btn {
+        display: block;
+        width: 100%;
+        color: #000000 !important;
+        font-weight: 700;
+        font-size: 18px;
+        text-align: center;
+        text-decoration: none;
+        padding: 16px 20px;
+        background: linear-gradient(180deg, #ebd1a7 0%, #d5b376 40%, #c39e58 100%) !important;
+        border: 1px solid #9e7f44 !important;
+        border-radius: 6px !important;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.35),
+          0 4px 12px rgba(0, 0, 0, 0.5) !important;
+        font-family: "EB Garamond", serif;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: gold-pulse 3s infinite ease-in-out;
+      }
 
-    .mystical-star {
-      position: absolute;
-      right: 16px;
-      color: #9e9382;
-      opacity: 0.8;
-    }
-  </style>
-</head>
-<body>
+      .gold-btn:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.08);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.4),
+          0 6px 16px rgba(197, 160, 89, 0.4) !important;
+      }
 
-  <main>
-    <!-- Central Parchment Card -->
-    <section class="parchment">
-      
-      <!-- Medallion & Title (Always visible, hidden only during final redirect) -->
-      <div id="header-section" class="crest-container">
-        <!-- Renders our beautiful local salomon_coin.png automatically -->
-        <img class="crest-img" src="salomon_coin.png" alt="Brasão de Salomão" onerror="this.src='public/salomon_coin.png'; this.onerror=function(){this.src='src/assets/salomon_coin.png'}">
-        <h1 class="main-title">A SONDAGEM DA ESFERA DE ESCASSEZ</h1>
-        <div class="title-separator"></div>
-      </div>
+      .gold-btn:active {
+        transform: translateY(0) scale(0.985);
+      }
 
-      <!-- 1. WELCOME SCREEN -->
-      <div id="welcome-screen">
-        <p class="intro-text">
-          Desvende as chaves secretas de Salomão para quebrar a maldição financeira hereditária e destravar a sua prosperidade. A avaliação das suas raízes espirituais começará a seguir.
-        </p>
-        <button id="start-btn" class="gold-btn">INICIAR REVELAÇÃO</button>
-      </div>
+      @keyframes gold-pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.35),
+            0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+        50% {
+          transform: scale(1.008);
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.4),
+            0 4px 16px rgba(197, 160, 89, 0.5);
+        }
+      }
 
-      <!-- 2. QUIZ SCREEN -->
-      <div id="quiz-screen" style="display: none;">
-        <!-- Progress Bar Section -->
-        <div class="progress-section">
-          <p id="progress-label" class="progress-label">Sondando Raízes Espirituais... (Nível: 12.5%)</p>
-          <div class="progress-bar-bg">
-            <div id="progress-fill" class="progress-bar-fill"></div>
+      /* Option styling gaps */
+      .options-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      /* Golden Progress Bar */
+      .progress-section {
+        margin-bottom: 32px;
+      }
+
+      .progress-label {
+        text-align: center;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+        color: #a89d8c;
+        margin-bottom: 8px;
+      }
+
+      .progress-bar-bg {
+        height: 12px;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        border: 1px solid rgba(74, 60, 44, 0.8);
+        border-radius: 9999px;
+        overflow: hidden;
+      }
+
+      .progress-bar-fill {
+        height: 100%;
+        width: 12.5%;
+        background: linear-gradient(90deg, #c5a059 0%, #dfb875 50%, #c5a059 100%) !important;
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25) !important;
+        border-radius: 9999px;
+        transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Question Copy Layout */
+      .question-text {
+        text-align: center;
+        font-size: 20px;
+        line-height: 1.5;
+        color: #ffffff;
+        margin-bottom: 32px;
+        font-family: "EB Garamond", serif;
+      }
+
+      @media (min-width: 480px) {
+        .question-text {
+          font-size: 24px;
+        }
+      }
+
+      /* Loading Screen Spinner */
+      .loader-ring {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        border: 4px solid rgba(218, 165, 32, 0.2);
+        border-top-color: #daa520;
+        box-shadow: 0 0 20px rgba(218, 165, 32, 0.7);
+        animation: spin 1s linear infinite;
+        margin-bottom: 32px;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .loading-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 48px 0;
+        min-height: 300px;
+      }
+
+      .loading-text {
+        text-align: center;
+        font-size: 20px;
+        font-weight: 700;
+        font-family: "Cormorant Garamond", serif;
+        color: #c5a880;
+        text-shadow: 0 0 15px rgba(197, 168, 128, 0.5);
+        animation: pulse 1.5s infinite ease-in-out;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.6;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* Fade-in Transition Animation */
+      .fade-in {
+        animation: quiz-fade 0.5s ease-out both;
+      }
+
+      @keyframes quiz-fade {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Outer Footer Navigation */
+      .footer-container {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .footer-counter {
+        font-family: "EB Garamond", serif;
+        color: #9e9382;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+      }
+
+      .mystical-star {
+        position: absolute;
+        right: 16px;
+        color: #9e9382;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- Central Parchment Card -->
+      <section class="parchment">
+        <!-- Medallion & Title (Always visible, hidden only during final redirect) -->
+        <div id="header-section" class="crest-container">
+          <!-- Renders our beautiful local salomon_coin.png automatically -->
+          <img
+            class="crest-img"
+            src="salomon_coin.png"
+            alt="Brasão de Salomão"
+            onerror="
+              this.src = 'public/salomon_coin.png';
+              this.onerror = function () {
+                this.src = 'src/assets/salomon_coin.png';
+              };
+            "
+          />
+          <h1 class="main-title">A SONDAGEM DA ESFERA DE ESCASSEZ</h1>
+          <div class="title-separator"></div>
+        </div>
+
+        <!-- 1. WELCOME SCREEN -->
+        <div id="welcome-screen">
+          <p class="intro-text">
+            Desvende as chaves secretas de Salomão para quebrar a maldição financeira hereditária e
+            destravar a sua prosperidade. A avaliação das suas raízes espirituais começará a seguir.
+          </p>
+          <button id="start-btn" class="gold-btn">INICIAR REVELAÇÃO</button>
+        </div>
+
+        <!-- 2. QUIZ SCREEN -->
+        <div id="quiz-screen" style="display: none">
+          <!-- Progress Bar Section -->
+          <div class="progress-section">
+            <p id="progress-label" class="progress-label">
+              Sondando Raízes Espirituais... (Nível: 12.5%)
+            </p>
+            <div class="progress-bar-bg">
+              <div id="progress-fill" class="progress-bar-fill"></div>
+            </div>
+          </div>
+
+          <!-- Dynamic Question Area -->
+          <div id="question-area" class="fade-in">
+            <p id="question-text" class="question-text">Pergunta vai aqui?</p>
+            <div id="options-box" class="options-container">
+              <!-- Dynamic Buttons generated by JavaScript -->
+            </div>
           </div>
         </div>
 
-        <!-- Dynamic Question Area -->
-        <div id="question-area" class="fade-in">
-          <p id="question-text" class="question-text">Pergunta vai aqui?</p>
-          <div id="options-box" class="options-container">
-            <!-- Dynamic Buttons generated by JavaScript -->
+        <!-- 3. LOADING / REDIRECTION SCREEN -->
+        <div id="loading-screen" style="display: none">
+          <div class="loading-container">
+            <p
+              class="warning-title"
+              style="
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: 26px;
+                font-weight: 700;
+                color: #e63946;
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                text-shadow: 0 0 15px rgba(230, 57, 70, 0.4);
+                margin-bottom: 24px;
+              "
+            >
+              Bloqueio Identificado!
+            </p>
+            <div class="progress-bar-bg" style="margin-bottom: 8px; max-width: 350px; width: 100%">
+              <div id="loading-progress-fill" class="progress-bar-fill" style="width: 0%"></div>
+            </div>
+            <p
+              id="loading-progress-text"
+              style="
+                font-family: &quot;EB Garamond&quot;, serif;
+                font-size: 16px;
+                color: #c5a880;
+                margin-bottom: 24px;
+                text-align: center;
+                font-weight: 500;
+              "
+            >
+              0%
+            </p>
+            <p class="loading-text" style="font-size: 18px">
+              Conectando com o Código de Salomão...
+            </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- 3. LOADING / REDIRECTION SCREEN -->
-      <div id="loading-screen" style="display: none;">
-        <div class="loading-container">
-          <div class="loader-ring"></div>
-          <p class="loading-text">Redirecionando para a Libertação...</p>
+      <!-- Footer outside the card -->
+      <div id="footer-section" class="footer-container">
+        <p id="footer-counter" class="footer-counter">1 / 8</p>
+        <div class="mystical-star" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+          </svg>
         </div>
       </div>
+    </main>
 
-    </section>
+    <script>
+      // ===== CONFIGURATION: INSERT YOUR SALES PAGE URL HERE =====
+      const REDIRECT_URL = "https://salomaopg.netlify.app/";
 
-    <!-- Footer outside the card -->
-    <div id="footer-section" class="footer-container">
-      <p id="footer-counter" class="footer-counter">1 / 8</p>
-      <div class="mystical-star" aria-hidden="true">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
-        </svg>
-      </div>
-    </div>
-  </main>
+      // 8 Psychological pressure questions and options
+      const QUESTIONS = [
+        {
+          q: "Você sente que, por mais que ore e trabalhe, a sua vida financeira parece estar sob uma maldição que você não consegue quebrar?",
+          opts: [
+            "Sim, sinto que minha vida está totalmente amarrada e travada",
+            "Trabalho como escravo e o dinheiro some antes de entrar",
+          ],
+        },
+        {
+          q: "Qual dessas humilhações você não aguenta mais passar no seu dia a dia?",
+          opts: [
+            "Ver minha família passando vontade e não poder dar o básico",
+            "Deitar a cabeça no travesseiro e chorar escondido com medo do amanhã",
+            "O olhar de julgamento das pessoas que me veem fracassar",
+          ],
+        },
+        {
+          q: "O seu estresse com a falta de dinheiro já começou a afetar a paz dentro da sua casa e o seu relacionamento?",
+          opts: [
+            "Sim, as cobranças e as brigas estão destruindo o meu lar",
+            "Sim, sinto uma vergonha profunda diante dos meus filhos/parceiro",
+          ],
+        },
+        {
+          q: "Se você não quebrar esse ciclo de escassez hoje, como estará a sua vida financeira daqui a 6 meses?",
+          opts: [
+            "Pior do que hoje, atolado em dívidas e no desespero total",
+            "Humilhado, dependendo da ajuda ou da pena dos outros",
+          ],
+        },
+        {
+          q: "Você já percebeu que as mesmas dificuldades financeiras que seus pais enfrentaram estão se repetindo EXATAMENTE igual na sua vida?",
+          opts: [
+            "Sim, vejo que é uma maldição hereditária que passou para mim",
+            "Sim, e tenho um medo profundo de deixar essa herança maldita para meus filhos",
+          ],
+        },
+        {
+          q: "Você sabia que a Bíblia diz que o povo sofre por falta de conhecimento, e que Salomão deixou chaves exatas para sair da miséria?",
+          opts: [
+            "Eu preciso conhecer essas chaves urgentemente para mudar minha história",
+            "Não aceito mais viver na ignorância e na escassez, quero a resposta",
+          ],
+        },
+        {
+          q: "Se a revelação secreta para destravar a sua prosperidade exigir apenas 7 minutos do seu dia, você assume o compromisso sagrado?",
+          opts: [
+            "SIM! Eu faço o que for preciso, não aguento mais essa humilhação!",
+            "Estou pronto para seguir o protocolo com toda a força da minha fé",
+          ],
+        },
+        {
+          q: "A sua sentença de libertação está pronta. Você vai clicar para receber o Código de Salomão ou vai aceitar continuar na miséria?",
+          opts: [
+            "QUERO QUEBRAR A MALDIÇÃO E DESTRAVAR MINHA RIQUEZA AGORA! 👑",
+            "NÃO ACEITO MAIS A HUMILHAÇÃO, QUERO MINHA RESTAURAÇÃO! 💸",
+          ],
+        },
+      ];
 
-  <script>
-    // ===== CONFIGURATION: INSERT YOUR SALES PAGE URL HERE =====
-    const REDIRECT_URL = "index.html";
+      const STAGES = [
+        "Sondando Raízes Espirituais...",
+        "Analisando Humilhações Diárias...",
+        "Avaliando Danos Familiares...",
+        "Mapeando Ciclo de Escassez Futura...",
+        "Rastreando Maldição Hereditária...",
+        "Verificando Falta de Conhecimento...",
+        "Avaliando Compromisso Sagrado...",
+        "PREPARANDO SUA SENTENÇA FINAL...",
+      ];
 
-    // 8 Psychological pressure questions and options
-    const QUESTIONS = [
-      {
-        q: "Você sente que, por mais que ore e trabalhe, a sua vida financeira parece estar sob uma maldição que você não consegue quebrar?",
-        opts: [
-          "Sim, sinto que minha vida está totalmente amarrada e travada",
-          "Trabalho como escravo e o dinheiro some antes de entrar"
-        ]
-      },
-      {
-        q: "Qual dessas humilhações você não aguenta mais passar no seu dia a dia?",
-        opts: [
-          "Ver minha família passando vontade e não poder dar o básico",
-          "Deitar a cabeça no travesseiro e chorar escondido com medo do amanhã",
-          "O olhar de julgamento das pessoas que me veem fracassar"
-        ]
-      },
-      {
-        q: "O seu estresse com a falta de dinheiro já começou a afetar a paz dentro da sua casa e o seu relacionamento?",
-        opts: [
-          "Sim, as cobranças e as brigas estão destruindo o meu lar",
-          "Sim, sinto uma vergonha profunda diante dos meus filhos/parceiro"
-        ]
-      },
-      {
-        q: "Se você não quebrar esse ciclo de escassez hoje, como estará a sua vida financeira daqui a 6 meses?",
-        opts: [
-          "Pior do que hoje, atolado em dívidas e no desespero total",
-          "Humilhado, dependendo da ajuda ou da pena dos outros"
-        ]
-      },
-      {
-        q: "Você já percebeu que as mesmas dificuldades financeiras que seus pais enfrentaram estão se repetindo EXATAMENTE igual na sua vida?",
-        opts: [
-          "Sim, vejo que é uma maldição hereditária que passou para mim",
-          "Sim, e tenho um medo profundo de deixar essa herança maldita para meus filhos"
-        ]
-      },
-      {
-        q: "Você sabia que a Bíblia diz que o povo sofre por falta de conhecimento, e que Salomão deixou chaves exatas para sair da miséria?",
-        opts: [
-          "Eu preciso conhecer essas chaves urgentemente para mudar minha história",
-          "Não aceito mais viver na ignorância e na escassez, quero a resposta"
-        ]
-      },
-      {
-        q: "Se a revelação secreta para destravar a sua prosperidade exigir apenas 7 minutos do seu dia, você assume o compromisso sagrado?",
-        opts: [
-          "SIM! Eu faço o que for preciso, não aguento mais essa humilhação!",
-          "Estou pronto para seguir o protocolo com toda a força da minha fé"
-        ]
-      },
-      {
-        q: "A sua sentença de libertação está pronta. Você vai clicar para receber o Código de Salomão ou vai aceitar continuar na miséria?",
-        opts: [
-          "QUERO QUEBRAR A MALDIÇÃO E DESTRAVAR MINHA RIQUEZA AGORA! 👑",
-          "NÃO ACEITO MAIS A HUMILHAÇÃO, QUERO MINHA RESTAURAÇÃO! 💸"
-        ]
-      }
-    ];
+      // State Variables
+      let currentIndex = 0;
 
-    const STAGES = [
-      "Sondando Raízes Espirituais...",
-      "Analisando Humilhações Diárias...",
-      "Avaliando Danos Familiares...",
-      "Mapeando Ciclo de Escassez Futura...",
-      "Rastreando Maldição Hereditária...",
-      "Verificando Falta de Conhecimento...",
-      "Avaliando Compromisso Sagrado...",
-      "PREPARANDO SUA SENTENÇA FINAL..."
-    ];
+      // Elements
+      const welcomeScreen = document.getElementById("welcome-screen");
+      const quizScreen = document.getElementById("quiz-screen");
+      const loadingScreen = document.getElementById("loading-screen");
+      const headerSection = document.getElementById("header-section");
+      const footerSection = document.getElementById("footer-section");
 
-    // State Variables
-    let currentIndex = 0;
+      const startBtn = document.getElementById("start-btn");
+      const progressLabel = document.getElementById("progress-label");
+      const progressFill = document.getElementById("progress-fill");
+      const questionText = document.getElementById("question-text");
+      const optionsBox = document.getElementById("options-box");
+      const footerCounter = document.getElementById("footer-counter");
 
-    // Elements
-    const welcomeScreen = document.getElementById("welcome-screen");
-    const quizScreen = document.getElementById("quiz-screen");
-    const loadingScreen = document.getElementById("loading-screen");
-    const headerSection = document.getElementById("header-section");
-    const footerSection = document.getElementById("footer-section");
-    
-    const startBtn = document.getElementById("start-btn");
-    const progressLabel = document.getElementById("progress-label");
-    const progressFill = document.getElementById("progress-fill");
-    const questionText = document.getElementById("question-text");
-    const optionsBox = document.getElementById("options-box");
-    const footerCounter = document.getElementById("footer-counter");
-
-    // Click to start quiz
-    startBtn.addEventListener("click", () => {
-      welcomeScreen.style.display = "none";
-      quizScreen.style.display = "block";
-      renderQuestion();
-    });
-
-    // Render active question
-    function renderQuestion() {
-      const current = QUESTIONS[currentIndex];
-      
-      // Update Title & Counter text
-      progressLabel.textContent = `${STAGES[currentIndex]} (Nível: ${(currentIndex + 1) * 12.5}%)`;
-      progressFill.style.width = `${(currentIndex + 1) * 12.5}%`;
-      footerCounter.textContent = `${currentIndex + 1} / ${QUESTIONS.length}`;
-
-      // Update question text
-      questionText.textContent = current.q;
-
-      // Animate transition fade-in
-      const questionArea = document.getElementById("question-area");
-      questionArea.classList.remove("fade-in");
-      void questionArea.offsetWidth; // Trigger reflow to restart animation
-      questionArea.classList.add("fade-in");
-
-      // Generate buttons
-      optionsBox.innerHTML = "";
-      current.opts.forEach(opt => {
-        const btn = document.createElement("button");
-        btn.className = "gold-btn";
-        btn.textContent = opt;
-        btn.addEventListener("click", handleAnswer);
-        optionsBox.appendChild(btn);
+      // Click to start quiz
+      startBtn.addEventListener("click", () => {
+        welcomeScreen.style.display = "none";
+        quizScreen.style.display = "block";
+        renderQuestion();
       });
-    }
 
-    // Capture answer and go to next step
-    function handleAnswer() {
-      if (currentIndex === QUESTIONS.length - 1) {
-        // Last question answered, initiate transition
-        quizScreen.style.display = "none";
-        headerSection.style.display = "none"; // Hide coin during loading for clean screen
-        footerSection.style.display = "none";
-        loadingScreen.style.display = "block";
+      // Render active question
+      function renderQuestion() {
+        const current = QUESTIONS[currentIndex];
 
-        // Depois que o lead clica na última resposta do quiz:
-        setTimeout(() => {
-          window.location.href = REDIRECT_URL; // Joga o fudido direto na página do Templo!
-        }, 2000); // Espera 2 segundos fingindo que tá calculando o resultado espiritual
-        return;
+        // Update Title & Counter text
+        progressLabel.textContent = `${STAGES[currentIndex]} (Nível: ${(currentIndex + 1) * 12.5}%)`;
+        progressFill.style.width = `${(currentIndex + 1) * 12.5}%`;
+        footerCounter.textContent = `${currentIndex + 1} / ${QUESTIONS.length}`;
+
+        // Update question text
+        questionText.textContent = current.q;
+
+        // Animate transition fade-in
+        const questionArea = document.getElementById("question-area");
+        questionArea.classList.remove("fade-in");
+        void questionArea.offsetWidth; // Trigger reflow to restart animation
+        questionArea.classList.add("fade-in");
+
+        // Generate buttons
+        optionsBox.innerHTML = "";
+        current.opts.forEach((opt) => {
+          const btn = document.createElement("button");
+          btn.className = "gold-btn";
+          btn.textContent = opt;
+          btn.addEventListener("click", handleAnswer);
+          optionsBox.appendChild(btn);
+        });
       }
 
-      currentIndex++;
-      renderQuestion();
-    }
+      // Capture answer and go to next step
+      function handleAnswer() {
+        if (currentIndex === QUESTIONS.length - 1) {
+          // Last question answered, initiate transition
+          quizScreen.style.display = "none";
+          headerSection.style.display = "none"; // Hide coin during loading for clean screen
+          footerSection.style.display = "none";
+          loadingScreen.style.display = "block";
 
-    // ==========================================
-    // ===== 🛡️ ADVANCED SECURITY SHIELD =====
-    // ==========================================
-    
-    // 1. Disable Right-Click (Inspect Menu blocker)
-    document.addEventListener("contextmenu", e => {
-      e.preventDefault();
-    });
+          let progressVal = 0;
+          const progressFillLoading = document.getElementById("loading-progress-fill");
+          const progressTextLoading = document.getElementById("loading-progress-text");
 
-    // 2. Disable DevTools Keyboard Shortcuts (F12, View Source, Save Page, Element Inspect)
-    window.addEventListener("keydown", e => {
-      // F12 key
-      if (e.key === "F12") {
+          const interval = setInterval(() => {
+            progressVal++;
+            if (progressFillLoading) {
+              progressFillLoading.style.width = progressVal + "%";
+            }
+            if (progressTextLoading) {
+              progressTextLoading.textContent = progressVal + "%";
+            }
+            if (progressVal >= 100) {
+              clearInterval(interval);
+              window.location.href = REDIRECT_URL;
+            }
+          }, 30); // 30ms * 100 = 3000ms (3 segundos)
+          return;
+        }
+
+        currentIndex++;
+        renderQuestion();
+      }
+
+      // ==========================================
+      // ===== 🛡️ ADVANCED SECURITY SHIELD =====
+      // ==========================================
+
+      // 1. Disable Right-Click (Inspect Menu blocker)
+      document.addEventListener("contextmenu", (e) => {
         e.preventDefault();
-        return false;
-      }
-      // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (Inspect/Console/Element)
-      if (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C" || e.key === "i" || e.key === "j" || e.key === "c")) {
-        e.preventDefault();
-        return false;
-      }
-      // Ctrl+U (View source)
-      if (e.ctrlKey && (e.key === "U" || e.key === "u")) {
-        e.preventDefault();
-        return false;
-      }
-      // Ctrl+S (Save page)
-      if (e.ctrlKey && (e.key === "S" || e.key === "s")) {
-        e.preventDefault();
-        return false;
-      }
-    });
+      });
 
-    // 3. Prevent dragging and dropping images
-    document.addEventListener("dragstart", e => {
-      if (e.target.tagName === "IMG") {
+      // 2. Disable DevTools Keyboard Shortcuts (F12, View Source, Save Page, Element Inspect)
+      window.addEventListener("keydown", (e) => {
+        // F12 key
+        if (e.key === "F12") {
+          e.preventDefault();
+          return false;
+        }
+        // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (Inspect/Console/Element)
+        if (
+          e.ctrlKey &&
+          e.shiftKey &&
+          (e.key === "I" ||
+            e.key === "J" ||
+            e.key === "C" ||
+            e.key === "i" ||
+            e.key === "j" ||
+            e.key === "c")
+        ) {
+          e.preventDefault();
+          return false;
+        }
+        // Ctrl+U (View source)
+        if (e.ctrlKey && (e.key === "U" || e.key === "u")) {
+          e.preventDefault();
+          return false;
+        }
+        // Ctrl+S (Save page)
+        if (e.ctrlKey && (e.key === "S" || e.key === "s")) {
+          e.preventDefault();
+          return false;
+        }
+      });
+
+      // 3. Prevent dragging and dropping images
+      document.addEventListener("dragstart", (e) => {
+        if (e.target.tagName === "IMG") {
+          e.preventDefault();
+        }
+      });
+
+      // 4. Disable copy triggers (Clipboard blocker)
+      document.addEventListener("copy", (e) => {
         e.preventDefault();
-      }
-    });
+      });
 
-    // 4. Disable copy triggers (Clipboard blocker)
-    document.addEventListener("copy", e => {
-      e.preventDefault();
-    });
-
-    // 5. Anti-debugger freeze loop
-    setInterval(() => {
-      (function() {
-        (function a() {
-          debugger;
-        }());
-      }());
-    }, 200);
-
-  </script>
-</body>
+      // 5. Anti-debugger freeze loop
+      setInterval(() => {
+        (function () {
+          (function a() {
+            debugger;
+          })();
+        })();
+      }, 200);
+    </script>
+  </body>
 </html>

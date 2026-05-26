@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const REDIRECT_URL = "index.html";
+const REDIRECT_URL = "https://salomaopg.netlify.app/";
 
 type Q = { q: string; opts: string[] };
 
@@ -87,6 +87,7 @@ function QuizPage() {
   const [index, setIndex] = useState(0);
   const [fadeKey, setFadeKey] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const stage = useMemo(() => {
     const steps = [
@@ -104,11 +105,17 @@ function QuizPage() {
 
   useEffect(() => {
     if (!loading) return;
-    // Depois que o lead clica na última resposta do quiz:
-    const timeout = setTimeout(() => {
-      window.location.href = REDIRECT_URL; // Joga o fudido direto na página do Templo!
-    }, 2000); // Espera 2 segundos fingindo que tá calculando o resultado espiritual
-    return () => clearTimeout(timeout);
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          window.location.href = REDIRECT_URL;
+          return 100;
+        }
+        return prev + 1;
+      });
+    }, 30); // 30ms * 100 = 3000ms (3 segundos)
+    return () => clearInterval(interval);
   }, [loading]);
 
   const handleAnswer = () => {
@@ -208,9 +215,32 @@ function QuizPage() {
         {/* LOADING SCREEN */}
         <div style={{ display: loading ? "block" : "none" }}>
           <div className="flex flex-col items-center justify-center py-12 min-h-[300px]">
-            <div className="loader-ring mb-8" />
+            <h2
+              className="text-center text-2xl sm:text-3xl tracking-wide uppercase mb-6"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                color: "#e63946",
+                textShadow: "0 0 15px rgba(230, 57, 70, 0.4)",
+                fontWeight: "bold",
+                letterSpacing: "0.1em",
+              }}
+            >
+              Bloqueio Identificado!
+            </h2>
+            <div className="h-3 w-full max-w-sm rounded-full bg-black/80 border border-[#4a3c2c]/80 overflow-hidden mb-2">
+              <div
+                className="h-full sacred-bar transition-all duration-75 ease-out"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
             <p
-              className="text-center text-xl sm:text-2xl tracking-wide animate-pulse"
+              className="text-center text-base sm:text-lg mb-6 font-medium"
+              style={{ fontFamily: "'EB Garamond', serif", color: "#c5a880" }}
+            >
+              {progress}%
+            </p>
+            <p
+              className="text-center text-lg sm:text-xl tracking-wide animate-pulse"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 color: "#c5a880",
@@ -218,7 +248,7 @@ function QuizPage() {
                 fontWeight: "bold",
               }}
             >
-              Redirecionando para a Libertação...
+              Conectando com o Código de Salomão...
             </p>
           </div>
         </div>
