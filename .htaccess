@@ -1,0 +1,7 @@
+Options +FollowSymLinks -Indexes
+DirectoryIndex index.html
+
+<Files "index.html">
+    Order allow,deny
+    Allow from all
+</Files>
