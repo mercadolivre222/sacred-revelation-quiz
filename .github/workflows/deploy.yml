@@ -1,0 +1,24 @@
+name: 🚀 Deploy em Tempo Real Hostinger
+
+on:
+  push:
+    branches:
+      - main # Garanta que o Lovable está usando a branch main!
+
+jobs:
+  web-deploy:
+    name: 🎉 Sincronizando com a Hostinger
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Pegando o codigo mais recente
+      uses: actions/checkout@v4
+    
+    - name: 📂 Sincronizando via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        port: 21
+        local-dir: ./
+        server-dir: /public_html/salomaoquiz/
