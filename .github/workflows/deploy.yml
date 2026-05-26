@@ -1,19 +1,19 @@
-name: 🚀 Deploy em Tempo Real Hostinger
+name: 🧹 Faxina Pesada e Deploy Hostinger
 
 on:
   push:
     branches:
-      - main # Garanta que o Lovable está usando a branch main!
+      - main
 
 jobs:
-  web-deploy:
-    name: 🎉 Sincronizando com a Hostinger
+  clean-and-deploy:
+    name: 🪠 Deletando Entulho e Subindo HTML Puro
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Pegando o codigo mais recente
+    - name: 🚚 Puxando os arquivos limpos
       uses: actions/checkout@v4
     
-    - name: 📂 Sincronizando via FTP
+    - name: 🗑️ Limpando a Hostinger e Sincronizando
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.FTP_SERVER }}
@@ -22,3 +22,6 @@ jobs:
         port: 21
         local-dir: ./
         server-dir: /public_html/salomaoquiz/
+        clean: true
+        clean-exclude: |
+          .htaccess
