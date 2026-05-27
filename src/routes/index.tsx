@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const REDIRECT_URL = "https://salomaopg.netlify.app/";
+const REDIRECT_URL = "https://protocolosalomao.vercel.app/";
 
 type Q = { q: string; opts: string[] };
 
