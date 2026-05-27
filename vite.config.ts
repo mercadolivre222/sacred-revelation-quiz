@@ -10,7 +10,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // @cloudflare/vite-plugin builds from this — wrangler.jsonc main alone is insufficient.
 export default defineConfig({
   vite: {
-    base: "/sacred-revelation-quiz/", // Altere aqui se o nome do seu repositório do GitHub for diferente!
+    base: process.env.VERCEL ? "/" : "/sacred-revelation-quiz/", // Garante base path correto na Vercel e GitHub Pages!
   },
   tanstackStart: {
     server: { entry: "server" },
