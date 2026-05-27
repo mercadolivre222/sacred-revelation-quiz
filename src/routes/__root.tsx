@@ -131,6 +131,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       {
+        rel: "icon",
+        type: "image/png",
+        href: "/salomon_coin.png",
+      },
+      {
         rel: "stylesheet",
         href: appCss,
       },
