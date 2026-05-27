@@ -35,7 +35,7 @@ try {
   }
 
   // Copy root images to dist/
-  ['salomon_coin.png', 'coin.jpg'].forEach(img => {
+  ['salomon_coin.png', 'coin.jpg', 'salomon_padlock.png'].forEach(img => {
     if (fs.existsSync(img)) {
       console.log(`Copying ${img} to dist/...`);
       fs.copyFileSync(img, path.join('dist', img));
