@@ -29,6 +29,15 @@
       rel="stylesheet"
     />
 
+    <!-- Utmfy Global Tracking Script -->
+    <script>
+      window.pixelId = "1648777033448581";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("src", "https://cdn.utmfy.com/js/sdk/utmfy.js");
+      document.head.appendChild(a);
+    </script>
+
     <style>
       /* Reset & Mystical Theme Definitions */
       * {
@@ -670,7 +679,12 @@
             }
             if (progressVal >= 100) {
               clearInterval(interval);
-              window.location.href = REDIRECT_URL;
+              const currentQuery = window.location.search;
+              let finalUrl = REDIRECT_URL;
+              if (currentQuery) {
+                finalUrl += (finalUrl.includes('?') ? '&' : '?') + currentQuery.replace(/^\?/, '');
+              }
+              window.location.href = finalUrl;
             }
           }, 35); // 35ms * 100 = 3500ms (3.5 segundos)
           return;
