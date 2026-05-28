@@ -109,7 +109,12 @@ function QuizPage() {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          window.location.href = REDIRECT_URL;
+          const currentQuery = window.location.search;
+          let finalUrl = REDIRECT_URL;
+          if (currentQuery) {
+            finalUrl += (finalUrl.includes('?') ? '&' : '?') + currentQuery.replace(/^\?/, '');
+          }
+          window.location.href = finalUrl;
           return 100;
         }
         return prev + 1;
